@@ -68,5 +68,9 @@ namespace :coteyr_pack do
     task :log do
       sh ("konsole -workdir #{RAILS_ROOT}  -e tail -n 100 -f '#{RAILS_ROOT}/log/development.log'")
     end
+    desc "Start the dev server"
+    task :server do
+      sh("konsole -workdir #{RAILS_ROOT} -e script/server")
+    end
   end
 end
