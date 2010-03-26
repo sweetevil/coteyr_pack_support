@@ -16,6 +16,7 @@ namespace :coteyr_pack do
   end
   desc "Copy Application.html.erb and other first time files"
   task :first_time do
+    plugin_dir = File.join(File.dirname(__FILE__), '..')
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
   end
   namespace :linux do
