@@ -1,1 +1,18 @@
- public/videos/*.flv
+*~
+*.cache
+*.log
+*.pid
+tmp/**/*
+.DS_Store
+db/cstore/**
+db/sphinx/**
+doc/api
+doc/app
+doc/plugins
+doc/*.dot
+coverage/*
+db/*.sqlite3
+*.tmproj
+*.flv
+public/data/**
+config/database.yml
