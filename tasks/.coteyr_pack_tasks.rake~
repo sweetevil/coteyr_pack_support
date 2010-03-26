@@ -61,7 +61,7 @@ namespace :coteyr_pack do
     end
     desc "View Logs"
     task :log do
-      sh ("konsole -workdir #{RAILS_ROOT}  -e tail -n 100 -f '#{RAILS_ROOT}'")
+      sh ("konsole -workdir #{RAILS_ROOT}  -e tail -n 100 -f '#{RAILS_ROOT}/log/development.log'")
     end
   end
 end
