@@ -12,8 +12,12 @@ namespace :coteyr_pack do
     FileUtils.cp( File.join(plugin_dir, '.gitignore'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'Capfile'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'script')], File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
+
     puts "Finished."
+  end
+  desc "Copy Application.html.erb and other first time files"
+  task :first_time
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
   end
   namespace :linux do
     desc "This starts the Ease of use Menu"
