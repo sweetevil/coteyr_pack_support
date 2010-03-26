@@ -1,0 +1,28 @@
+body {
+margin:0px;
+font-family: Verdana, helvetica, sans-serif;
+font-size: 12px;
+}
+.red {
+color:#900d0c;
+}
+.underline{
+text-decoration:underline;
+}
+.bold {
+font-weight:bold;
+}
+.green{
+color:#006432;
+}
+.center{
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+}
+.justify{
+text-align:left;
+}
+.italic{
+font-style:italic;
+}
