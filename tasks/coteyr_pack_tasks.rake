@@ -60,10 +60,6 @@ namespace :coteyr_pack do
     task :migrate do
       sh ("#{RAILS_ROOT}/script/dbmig.sh '#{RAILS_ROOT}'")
     end
-    desc "Run the DB Migrator (not rake db:migrate but the wrapper)"
-    task :migrate do
-      sh ("#{RAILS_ROOT}/script/dbmig.sh '#{RAILS_ROOT}'")
-    end
     desc "View Logs"
     task :log do
       sh ("konsole -workdir #{RAILS_ROOT}  -e tail -n 100 -f '#{RAILS_ROOT}/log/development.log'")
