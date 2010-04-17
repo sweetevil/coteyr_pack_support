@@ -7,7 +7,26 @@ Plugin used to reduce some of the repetive tasks when starting a new project.
 Example
 =======
 
-Example goes here.
+some quick tasks that help with rake and commiting.
+
+rake coteyr_pack:first_time               # Copy Application.html.erb and other first time files
+rake coteyr_pack:setup                    # Use this task to install coteyr_pack.
+
+
+The following are specfic to linux
+rake coteyr_pack:linux:auto_test          # Run Autotest
+rake coteyr_pack:linux:commit             # Commits using ~/.bin/commit
+rake coteyr_pack:linux:console            # Run the console
+rake coteyr_pack:linux:controller         # Run the Controller Generator (not script/generate but the wrapper)
+rake coteyr_pack:linux:log                # View Logs
+rake coteyr_pack:linux:menu               # This starts the Ease of use Menu
+rake coteyr_pack:linux:migrate            # Run the DB Migrator (not rake db:migrate but the wrapper) / Run the DB Migrator (not...
+rake coteyr_pack:linux:migration          # Run the Migration Generator (not script/generate but the wrapper)
+rake coteyr_pack:linux:model              # Run the Model Generator (not script/generate but the wrapper)
+rake coteyr_pack:linux:pull               # Update local Repo using ~/.bin/pull
+rake coteyr_pack:linux:server             # Start the dev server
+rake coteyr_pack:linux:test_all           # Run All tests
+
 
 
 Copyright (c) 2010 coteyr@coteyr.net, released under the GNU GPLv3 license

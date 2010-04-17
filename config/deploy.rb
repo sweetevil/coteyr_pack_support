@@ -1,6 +1,7 @@
 #Basic Skelton Deployment file. Look in the deploy=settings and deploy-custom for actual configuration.
 set :stages, %w(production testing)
 set :default_stage, "testing"
+set :git_enable_submodules, true
 require 'config/deploy-settings.rb'
 require 'config/deploy-custom.rb'
 require 'capistrano/ext/multistage'
