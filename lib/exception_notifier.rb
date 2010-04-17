@@ -33,7 +33,7 @@ class ExceptionNotifier < ActionMailer::Base
   @@sections = %w(request session environment backtrace)
   cattr_accessor :sections
 
-  self.template_root = "#{File.dirname(__FILE__)}/../../"
+  self.template_root = "#{File.dirname(__FILE__)}/../"
 
   def self.reloadable?() false end
 
