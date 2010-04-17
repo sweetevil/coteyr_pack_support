@@ -60,10 +60,6 @@ namespace :coteyr_pack do
     task :migrate do
       sh ("#{RAILS_ROOT}/script/dbmig.sh '#{RAILS_ROOT}'")
     end
-    desc "Run the DB Migrator (not rake db:migrate but the wrapper)"
-    task :migrate do
-      sh ("#{RAILS_ROOT}/script/dbmig.sh '#{RAILS_ROOT}'")
-    end
     desc "View Logs"
     task :log do
       sh ("konsole -workdir #{RAILS_ROOT}  -e tail -n 100 -f '#{RAILS_ROOT}/log/development.log'")
@@ -72,14 +68,11 @@ namespace :coteyr_pack do
     task :server do
       sh("konsole -workdir #{RAILS_ROOT} -e script/server")
     end
-<<<<<<< HEAD
   end
   namespace :log do
     desc "Statitcs"
     task :stats do
       sh("ruby #{RAILS_ROOT}/vendor/plugins/coteyr_pack/lib/rails_log_parser.rb #{RAILS_ROOT}/log/#{RAILS_ENV}.log")
     end
-=======
->>>>>>> 12514d7827b5c04c3d37ad7a8a22f4f14e8dcb2b
   end
 end

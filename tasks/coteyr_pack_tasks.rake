@@ -18,6 +18,7 @@ namespace :coteyr_pack do
   task :first_time do
     plugin_dir = File.join(File.dirname(__FILE__), '..')
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
   end
   namespace :linux do
     desc "This starts the Ease of use Menu"
