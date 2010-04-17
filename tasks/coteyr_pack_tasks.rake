@@ -73,4 +73,10 @@ namespace :coteyr_pack do
       sh("konsole -workdir #{RAILS_ROOT} -e script/server")
     end
   end
+  namespace :log do
+    desc "Statitcs"
+    task :stats do
+      sh("ruby #{RAILS_ROOT}/vendor/plugins/coteyr_pack/lib/rails_log_parser.rb #{RAILS_ROOT}/log/#{RAILS_ENV}.log")
+    end
+  end
 end
