@@ -1,2 +1,2 @@
 ExceptionNotifier.exception_recipients = %w(coteyr@coteyr.net)
-ExceptionNotifier.email_prefix = "[PASTE] "
+ExceptionNotifier.email_prefix = "[EXCEPTION][PASTE] "
