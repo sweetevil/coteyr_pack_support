@@ -1,39 +1,54 @@
 CoteyrPack
-==========
+=====
+A plugin used to reduce some of the more repetitive tasks when starting and developing a Ruby on Rails project. Included are some basic plugins that have been branched and modified to work in a better fashion.
 
-Plugin used to reduce some of the repetive tasks when starting a new rails project.
+Examples
+=====
+Some quick rake tasks to make things go eaiser
 
-
-Example
-=======
-
-some quick tasks that help with rake and commiting.
-
-rake coteyr_pack:first_time               # Copy Application.html.erb and other first time files
-rake coteyr_pack:setup                    # Use this task to install coteyr_pack.
-
-
-The following are specfic to linux
-rake coteyr_pack:linux:auto_test          # Run Autotest
-rake coteyr_pack:linux:commit             # Commits using ~/.bin/commit
-rake coteyr_pack:linux:console            # Run the console
-rake coteyr_pack:linux:controller         # Run the Controller Generator (not script/generate but the wrapper)
-rake coteyr_pack:linux:log                # View Logs
-rake coteyr_pack:linux:menu               # This starts the Ease of use Menu
-rake coteyr_pack:linux:migrate            # Run the DB Migrator (not rake db:migrate but the wrapper) / Run the DB Migrator (not...
-rake coteyr_pack:linux:migration          # Run the Migration Generator (not script/generate but the wrapper)
-rake coteyr_pack:linux:model              # Run the Model Generator (not script/generate but the wrapper)
-rake coteyr_pack:linux:pull               # Update local Repo using ~/.bin/pull
-rake coteyr_pack:linux:server             # Start the dev server
-rake coteyr_pack:linux:test_all           # Run All tests
+rake coteyr_pack:first_time     # Copy Application.html.erb and other first time
+                                # files. Only run once per project
+rake coteyr_pack:setup          # Use this task to install coteyr_pack (safe to
+                                # run after an update).
 
 
+The following will only work under linux (with kde and kdialog)
+
+rake coteyr_pack:linux:auto_test    # Run Autotest
+rake coteyr_pack:linux:commit       # Commits using ~/.bin/commit
+rake coteyr_pack:linux:console      # Run the console
+rake coteyr_pack:linux:controller   # Run the Controller Generator wrapper
+rake coteyr_pack:linux:log          # View Logs
+rake coteyr_pack:linux:menu         # This starts the Ease of use Menu
+rake coteyr_pack:linux:migrate      # Run the DB Migrator wrapper
+rake coteyr_pack:linux:migration    # Run the Migration Generator wrapper
+rake coteyr_pack:linux:model        # Run the Model Generator
+rake coteyr_pack:linux:pull         # Update local Repo using ~/.bin/pull
+rake coteyr_pack:linux:server       # Start the dev server
+rake coteyr_pack:linux:test_all     # Run All tests
+
+
+Note about included works
+=====
+Most of the heavy lifting in this plugin is the work of custom code. Sometimes a
+plugin will become unmaintained (or be refactored in a way that was contrary to what
+I felt was the best method). At such a time I branch that plugin and merge it into
+coteyr_pack. In these cases the original copyright holders are noted in the source
+files to the best of my ability.
+
+Usage Notes
+=====
+This plugin is intended to be used in house by Coteyr.net Programming LLC. As such
+scripts and other resources that are needed to allow this plugin to function, certain
+configurations, and code conventions are followed that may be contrary to main stream
+RoR development, or your workflow. Be advised that no modification will be made to
+this plugin to extend it to your workflow/configuration/or conventions. You should
+create your own plugin for that.
 
 Contact
-=======
+=====
 Robert D. Cotey II
 coteyr@coteyr.net
 www.coteyr.net
 
-Copyright (c) 2010 Robert D. Cotey II., released under the GNU GPLv3 license
-
+Copyright (c) 2010 Robert D. Cotey II, released under the GNU GPLv3 license
