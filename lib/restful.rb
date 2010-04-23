@@ -12,7 +12,8 @@
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.module Restful
+#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+module Restful
     def index
         objs = eval(@skope).find(:all)
         instance_variable_set("@#{@klass.name.underscore.downcase.pluralize}", objs)

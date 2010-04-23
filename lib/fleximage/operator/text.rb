@@ -1,12 +1,28 @@
+# Copyright (c) 2010 Robert D. Cotey II
+# Orignal version Copyright © 2008 Alex Wayne beautifulpixel.com, released under the MIT license.
+#    This file is part of coteyr_pack.
+#
+#    coteyr_pack is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    coteyr_pack is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 module Fleximage
   module Operator
-    
+
     # Draw text on the image.  Customize size, position, color, dropshadow, and font.
-    # 
+    #
     #   image.text(string_to_write, options = {})
     #
     # Use the following keys in the +options+ hash:
-    # 
+    #
     # * alignment: symbol like in <tt>ImageOverlay</tt>
     # * offset: size string
     # * antialias: true or false
@@ -66,7 +82,7 @@ module Fleximage
         text.pointsize      = options[:font_size].to_i
         text.rotation       = options[:rotate]
         text.font_weight    = options[:font_weight] if options[:font_weight]
-        
+
         if options[:stroke][:width] > 0
           text.stroke_width   = options[:stroke][:width]
           text.stroke         = options[:stroke][:color]
@@ -99,6 +115,6 @@ module Fleximage
         @image.composite!(temp_image, 0, 0, symbol_to_blending_mode(:over))
       end
     end
-    
+
   end
 end
