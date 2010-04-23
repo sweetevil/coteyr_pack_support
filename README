@@ -1,7 +1,7 @@
 CoteyrPack
 ==========
 
-Plugin used to reduce some of the repetive tasks when starting a new project.
+Plugin used to reduce some of the repetive tasks when starting a new rails project.
 
 
 Example
@@ -29,4 +29,11 @@ rake coteyr_pack:linux:test_all           # Run All tests
 
 
 
-Copyright (c) 2010 coteyr@coteyr.net, released under the GNU GPLv3 license
+Contact
+=======
+Robert D. Cotey II
+coteyr@coteyr.net
+www.coteyr.net
+
+Copyright (c) 2010 Robert D. Cotey II., released under the GNU GPLv3 license
+
