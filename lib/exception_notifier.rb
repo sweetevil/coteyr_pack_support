@@ -17,7 +17,7 @@
 require 'pathname'
 
 class ExceptionNotifier < ActionMailer::Base
-  @@sender_address = %('exceptions@coteyr.net')
+  @@sender_address = 'exceptions@coteyr.net'
   cattr_accessor :sender_address
 
   @@exception_recipients = []
