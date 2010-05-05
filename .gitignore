@@ -16,3 +16,11 @@ db/*.sqlite3
 *.flv
 public/data/**
 config/database.yml
+*.zip
+*.tgz
+*.tar.gz
+*.tar
+*.tar.bz
+*.tbz
+*.psd
+
