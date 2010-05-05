@@ -16,3 +16,5 @@
 
 ExceptionNotifier.exception_recipients = %w(email@address.tdl) #change this
 ExceptionNotifier.email_prefix = "[EXCEPTION][APP NAME] " #and this
+ExceptionNotifier.project_name = 'Project'
+ExceptionNotifier.project_tracker = 'Exceptions'

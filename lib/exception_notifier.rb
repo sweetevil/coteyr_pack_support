@@ -29,6 +29,11 @@ class ExceptionNotifier < ActionMailer::Base
   @@sections = %w(request session environment backtrace)
   cattr_accessor :sections
 
+  @@project_name = "Project"
+  cattr_accessor :project_name
+  @@project_tracker = "Exceptions"
+  cattr_accessor :project_tracker
+
   self.template_root = "#{File.dirname(__FILE__)}/../"
 
   def self.reloadable?() false end
@@ -45,7 +50,9 @@ class ExceptionNotifier < ActionMailer::Base
                   :exception => exception, :host => (request.env["HTTP_X_FORWARDED_HOST"] || request.env["HTTP_HOST"]),
                   :backtrace => sanitize_backtrace(exception.backtrace),
                   :rails_root => rails_root, :data => data,
-                  :sections => sections })
+                  :sections => sections,
+                  :project_name=>project_name,
+                  :project_tracker=>project_tracker})
   end
 
   private
