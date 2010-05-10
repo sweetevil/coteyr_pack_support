@@ -20,6 +20,7 @@ module Restful
         respond_to do |format|
             format.html
             format.xml {render :xml=>objs.to_xml}
+            format.json {render :json=>objs.to_json}
         end
     end
     def new
@@ -29,6 +30,7 @@ module Restful
             format.html
             format.xml {render :xml=>obj.to_xml}
             format.js {}
+            format.json {render :json=>obj.to_json}
         end
     end
     def create
@@ -53,6 +55,13 @@ module Restful
                 render :action=>:new
               end
             }
+            format.json {
+              if worked
+                render :json=>obj
+              else
+                render :json=>obj, :status=>500
+              end
+            }
         end
     end
     def show
@@ -61,6 +70,7 @@ module Restful
         respond_to do |format|
             format.html
             format.xml {render :xml=>obj.to_xml}
+            format.json {render :json=>obj.to_json}
         end
     end
     def update
@@ -83,6 +93,7 @@ module Restful
                 render :json=>obj, :status=>500
               end
             }
+
         end
     end
     def destroy
@@ -91,6 +102,7 @@ module Restful
         respond_to do |format|
             format.html {redirect_to :action=>:index}
             format.xml {head :ok}
+            format.json {head :ok}
         end
     end
     def edit
