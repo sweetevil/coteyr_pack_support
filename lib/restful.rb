@@ -20,7 +20,7 @@ module Restful
         respond_to do |format|
             format.html
             format.xml {render :xml=>objs.to_xml}
-            format.js {render :json=>objs.to_json}
+            format.json {render :json=>objs.to_json}
         end
     end
     def new
@@ -29,7 +29,7 @@ module Restful
         respond_to do |format|
             format.html
             format.xml {render :xml=>obj.to_xml}
-            format.js {render :json=>obj.to_json}
+            format.json {render :json=>obj.to_json}
 
         end
     end
@@ -47,7 +47,7 @@ module Restful
             }
 
             format.xml {render :xml=>obj, :status => :created, :location=>obj}
-            format.js {
+            format.json {
               if worked
                 objs = eval(@skope).find(:all)
                 instance_variable_set("@#{@klass.name.underscore.downcase.pluralize}", objs)
@@ -63,7 +63,7 @@ module Restful
         respond_to do |format|
             format.html
             format.xml {render :xml=>obj.to_xml}
-            format.js {render :json=>obj.to_json}
+            format.json {render :json=>obj.to_json}
         end
     end
     def update
@@ -79,7 +79,7 @@ module Restful
               end
             }
             format.xml{render :xml=>obj, :status => :updated, :location=>obj}
-            format.js {
+            format.json {
               if worked
                 render :json=>obj
               else
@@ -95,7 +95,7 @@ module Restful
         respond_to do |format|
             format.html {redirect_to :action=>:index}
             format.xml {head :ok}
-            format.js {head :ok}
+            format.json {head :ok}
         end
     end
     def edit
