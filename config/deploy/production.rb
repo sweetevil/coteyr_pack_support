@@ -13,3 +13,10 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+
+set(:deploy_to) {"/home/#{user}/web/#{application}-code"}
+set(:public_path) {"/home/#{user}/web/#{domain}"}
+#Servers
+server domain, :app, :web
+role :db, domain, :primary => true
+role :task_server, domain
