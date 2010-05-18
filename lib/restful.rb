@@ -96,6 +96,9 @@ module Restful
             format.html {redirect_to :action=>:index}
             format.xml {head :ok}
             format.json {head :ok}
+            format.js{
+              instance_variable_set("@object_id", obj.id)
+            }
         end
     end
     def edit
