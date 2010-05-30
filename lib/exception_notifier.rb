@@ -34,6 +34,7 @@ class ExceptionNotifier < ActionMailer::Base
   @@project_tracker = "Exceptions"
   cattr_accessor :project_tracker
 
+
   self.template_root = "#{File.dirname(__FILE__)}/../"
 
   def self.reloadable?() false end
