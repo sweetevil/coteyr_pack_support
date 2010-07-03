@@ -48,7 +48,7 @@ module ExceptionNotifiable
                     ActionController::UnknownController,
                     ActionController::UnknownAction]
       exceptions << ActionController::RoutingError if ActionController.const_defined?(:RoutingError)
-      exceptions << Facebooker::Session::SessionExpired if !Facebooker.nil?
+      exceptions << Facebooker::Session::SessionExpired if defined?(Facebooker)
       exceptions
     end
   end
