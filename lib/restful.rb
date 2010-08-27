@@ -78,7 +78,7 @@ module Restful
                 redirect_to edit_polymorphic_path(obj)
               end
             }
-            format.xml{render :xml=>obj, :status => :updated, :location=>obj}
+            format.xml{render :xml=>obj, :status =>200, :location=>obj}
             format.json {
               if worked
                 render :json=>obj
