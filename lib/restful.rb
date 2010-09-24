@@ -21,6 +21,7 @@ module Restful
             format.html
             format.xml {render :xml=>objs.to_xml}
             format.json {render :json=>objs.to_json}
+            format.js {}
         end
     end
     def new
@@ -64,6 +65,7 @@ module Restful
             format.html
             format.xml {render :xml=>obj.to_xml}
             format.json {render :json=>obj.to_json}
+            format.js {}
         end
     end
     def update
