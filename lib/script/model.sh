@@ -13,15 +13,14 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+FIRST=`pwd`
+cd $1
+CHOICE=`kdialog --title "Model Name" --inputbox "Model Name"`
+rails generate model $CHOICE
+cd $FIRST
 
-# Include hook code here
-require File.dirname(__FILE__) + '/lib/coteyr_pack.rb'
-require File.dirname(__FILE__) + '/lib/restful.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_builder.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_helper.rb'
-require File.expand_path(File.join(File.dirname(__FILE__), %w(lib fleximage)))
 
-require 'action_mailer'
-#require File.dirname(__FILE__) + '/lib/exception_notifier.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifiable.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifier_helper.rb'
+kate $1/test/unit/${CHOICE}_test.rb
+kate $1/test/fixtures/${CHOICE}s.yml
+kate $1/app/models/${CHOICE}.rb
+kate $1/db/migrate/*_create_${CHOICE}s.rb

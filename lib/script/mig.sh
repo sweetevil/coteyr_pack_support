@@ -13,15 +13,9 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
-
-# Include hook code here
-require File.dirname(__FILE__) + '/lib/coteyr_pack.rb'
-require File.dirname(__FILE__) + '/lib/restful.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_builder.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_helper.rb'
-require File.expand_path(File.join(File.dirname(__FILE__), %w(lib fleximage)))
-
-require 'action_mailer'
-#require File.dirname(__FILE__) + '/lib/exception_notifier.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifiable.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifier_helper.rb'
+FIRST=`pwd`
+cd $1
+CHOICE=`kdialog --title "Migration Name" --inputbox "Migration Name"`
+rails generate migration $CHOICE
+cd $FIRST
+kate $1/db/migrate/*_${CHOICE}.rb

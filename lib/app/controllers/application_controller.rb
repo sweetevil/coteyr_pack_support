@@ -14,14 +14,13 @@
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
-# Include hook code here
-require File.dirname(__FILE__) + '/lib/coteyr_pack.rb'
-require File.dirname(__FILE__) + '/lib/restful.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_builder.rb'
-require File.dirname(__FILE__) + '/lib/semantic_form_helper.rb'
-require File.expand_path(File.join(File.dirname(__FILE__), %w(lib fleximage)))
 
-require 'action_mailer'
-#require File.dirname(__FILE__) + '/lib/exception_notifier.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifiable.rb'
-#require File.dirname(__FILE__) + '/lib/exception_notifier_helper.rb'
+# Filters added to this controller apply to all controllers in the application.
+# Likewise, all the methods added will be available for all controllers.
+
+class ApplicationController < ActionController::Base
+  helper :all # include all helpers, all the time
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  # Scrub sensitive parameters from your log
+  # filter_parameter_logging :password
+end

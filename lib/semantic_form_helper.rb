@@ -25,6 +25,7 @@ module SemanticFormHelper
     to_return << field
     to_return << %Q{<label for="#{field_name}">#{label}</label>} if ["radio","check"].include?(type)
     to_return << %Q{</div></div>}
+    to_return.to_s.html_safe
   end
 
   def semantic_group(type, field_name, label, fields, options = {})
@@ -35,13 +36,14 @@ module SemanticFormHelper
     to_return << %Q{<div class="input">}
     to_return << fields.join
     to_return << %Q{</div></div>}
+    to_return.to_s.html_safe
   end
 
   def boolean_field_wrapper(input, name, value, text, help = nil)
     field = []
     field << %Q{<label>#{input} #{text}</label>}
     field << %Q{<div class="help">#{help}</div>} if help
-    field
+    field.to_s.html_safe
   end
 
   def check_box_tag_group(name, values, options = {})
