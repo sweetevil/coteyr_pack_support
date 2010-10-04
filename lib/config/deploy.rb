@@ -15,6 +15,7 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 #Basic Skelton Deployment file. Look in the deploy=settings and deploy-custom for actual configuration.
+require 'bundler/capistrano'
 set :stages, %w(production staging)
 set :default_stage, "production"
 set :git_enable_submodules, true

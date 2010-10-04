@@ -15,6 +15,7 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 gem 'capistrano'
+gem 'capistrano-ext'
 gem 'rmagick', :require => 'RMagick'
 gem 'aws-s3', :require => 'aws/s3'
 
