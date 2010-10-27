@@ -1,4 +1,4 @@
-<%% # Copyright (c) 2010 by Robert D. Cotey II
+<% # Copyright (c) 2010 by Robert D. Cotey II
    #    This file is part of coteyr_pack.
    #
    #    coteyr_pack is free software: you can redistribute it and/or modify
@@ -13,9 +13,9 @@
    #
    #    You should have received a copy of the GNU General Public License
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
--%%>
+-%>
 
-<%%= render "layouts/error_messages", :target => @<%= underscore_name.singularize %>} %>
+<%%= render "layouts/error_messages", :target => @<%= underscore_name.singularize %> %>
 <%= "\<\% form_for @#{underscore_name.singularize} do |f| \%\>" %>
   <%= "\<\% field_set_tag '#{underscore_name.singularize}' do \%\>" %>
     <%= "\<\%\= f.submit 'Save' \%\>" %>
