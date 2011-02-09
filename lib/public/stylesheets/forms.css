@@ -1,160 +1,316 @@
-/* Copyright (c) 2010 Robert D. Cotey II
- *    This file is part of coteyr_pack.
- *
- *    coteyr_pack is free software: you can redistribute it and/or modify
- *    it under the terms of the GNU General Public License as published by
- *    the Free Software Foundation, either version 3 of the License, or
- *    (at your option) any later version.
- *
- *    coteyr_pack is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *    GNU General Public License for more details.
- *
- *    You should have received a copy of the GNU General Public License
- *    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
- */
+/* Start site design */
+/*
+@charset "utf-8";
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.container {
+	width: 1004px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url(images/left_bg.jpg);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+.container .left {
+	float: left;
+	background-image: url(images/left_bg.jpg);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+.container .cont {
+	float: left;
+	background-image: url(images/right_bg.jpg);
+	background-repeat: repeat-y;
+	background-position: right top;
+}
+.container .cont .topBg {
+	background-image: url(images/top_pic.jpg);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 40px;
+	width: 718px;
+	height: 500px;
+	padding-right: 25px;
+	padding-left: 25px;
+}
+
+
+.blue   {
+	background-color: #0b5da1;
+	clear: both;
+	margin-right: 118px;
+	padding-top: 22px;
+}
+.line  {
+	clear: both;
+}
+
+*/
+/* END site design */
+
+
 
 /* Start Forms */
+
+form  {
+	background-color: #ecf1f5;
+	border: 1px solid #d6e3ec;
+	width: 600px;
+	margin: 0px;
+	padding: 20px 0px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.top  {
+	background-image: url(/images/grad_top.png);
+	background-color: #157DD4;
+	background-position: 0% 100%;
+	background-repeat: repeat-x;
+	border: 1px solid #162A5C;
+	height: 42px;
+	margin: 0px auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	width: 600px;
+}
+.top  .left  {
+	float: left;
+}
+.top  .right   {
+	float: right;
+}
+.top  .center1  {
+	float: left;
+	text-align: center;
+	color: #FFFFFF;
+	font-size: 22px;
+	text-decoration: none;
+	padding-top: 7px;
+	font-weight: normal;
+	text-transform: uppercase;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+
 form fieldset {
-  font-size: 16pt; }
+	font-size: 12px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+	margin-left:auto;
+	margin-right:auto;
+	width:34em;
+  }
+ form legend {
+ text-align:center;
+ }
+
+form fieldset label,
+form fieldset input,
+form fieldset select,
+form fieldset select option,
+form fieldset textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-color: #000;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333333;
+}
 form fieldset legend,
-form label,
-form input,
-form select,
-form select option,
-form textarea {
-  font-family: Georgia;
-  font-size: 16pt;
-  font-color: #000; }
-form input,
-form select,
-form textarea {
-  border-top: 2px solid #999999;
-  border-left: 2px solid #999999;
-  border-right: 2px solid #cccccc;
-  border-bottom: 2px solid #cccccc;
-  font-size: 16pt; }
-form input[type=text],
-form input[type=password],
-form textarea {
-  width: 20em; }
-form select {
-  height: 1.5em; }
-form input[type=submit],
-form input[type=button] {
-  background: #229316;
-  color: #fff;
-  border-top: 2px solid #55c649;
-  border-left: 2px solid #55c649;
-  border-right: 2px solid #006000;
-  border-bottom: 2px solid #006000;
-  margin: 0 5px; }
-form input[type=submit][value=cancel] {
-  border-top: 2px solid #e68582;
-  border-left: 2px solid #e68582;
-  border-bottom: 2px solid #801f1c;
-  border-right: 2px solid #801f1c;
-  color: #ffb8b5;
-  background: #b3524f; }
+ {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-color: #000;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
+}
+form fieldset select,
+form  fieldset textarea {
+	font-size: 12px;
+	border: 1px solid #b5b7b7;
+	width: 20em;
+	height: 20px;
+}
+form fieldset input,
+ {
+	font-size: 12px;
+	border: 1px solid #b5b7b7;
+	width: 20px;
+}
+
+form fieldset input[type=text],
+form fieldset input[type=password],
+form fieldset textarea {
+	width: 20em;
+	height: 20px;
+	border: 1px solid #b5b7b7;
+}
+form fieldset select {
+
+}
+form fieldset input[type=submit],
+form  fieldset input[type=button] {
+	color: #fff;
+	border: 0px solid #b5b7b7;
+	background-repeat: repeat-x;
+	height: 23px;
+	margin-top: 0;
+	margin-right: 5px;
+	margin-bottom: 0;
+	margin-left: 5px;
+	background-color: #177FD6;
+	background-image: url(/images/save.png);
+	background-position: left bottom;
+	padding-bottom: 4px;
+}
+form fieldset input[type=submit][value=cancel] {
+	color: #ffb8b5;
+	background: #b3524f;
+	border: 1px solid #b5b7b7;
+}
 form div.fieldWithErrors {
   display: inline; }
   form div.fieldWithErrors input, form div.fieldWithErrors select, form div.fieldWithErrors textarea {
-    border-top: 2px solid #8F0600;
-    border-left: 2px solid #8F0600;
-    border-bottom: 2px solid #BB4036;
-    border-right: 2px solid #BB4036;
-    line-height: 1.5em; }
-form div.check-box-field,
-form div.check-box-fields,
-form div.date-field,
-form div.datetime-field,
-form div.file-field,
-form div.password-field,
-form div.radio-field,
-form div.radio-fields,
-form div.select-field,
-form div.text-field,
-form div.textarea-field,
-form div.time-zone-select-field,
-form div.submit-field {
-  float: left;
-  clear: both;
-  margin: 0;
-  padding: 10px;
-  border-bottom: 1px solid #cccccc;
-  font-size: 16pt; }
-  form div.check-box-field div.input,
-  form div.check-box-fields div.input,
-  form div.date-field div.input,
-  form div.datetime-field div.input,
-  form div.file-field div.input,
-  form div.password-field div.input,
-  form div.radio-field div.input,
-  form div.radio-fields div.input,
-  form div.select-field div.input,
-  form div.text-field div.input,
-  form div.textarea-field div.input,
-  form div.time-zone-select-field div.input,
-  form div.submit-field div.input {
-    float: left;
-    clear: right;
-    text-align: left;
-    width: 20em;
-    padding-left: 5px; }
-  form div.check-box-field label,
-  form div.check-box-fields label,
-  form div.date-field label,
-  form div.datetime-field label,
-  form div.file-field label,
-  form div.password-field label,
-  form div.radio-field label,
-  form div.radio-fields label,
-  form div.select-field label,
-  form div.text-field label,
-  form div.textarea-field label,
-  form div.time-zone-select-field label,
-  form div.submit-field label {
-    float: left;
-    display: block;
-    width: 12em;
-    padding-right: 10px;
-    text-align: right; }
-    form div.check-box-field label span.help,
-    form div.check-box-fields label span.help,
-    form div.date-field label span.help,
-    form div.datetime-field label span.help,
-    form div.file-field label span.help,
-    form div.password-field label span.help,
-    form div.radio-field label span.help,
-    form div.radio-fields label span.help,
-    form div.select-field label span.help,
-    form div.text-field label span.help,
-    form div.textarea-field label span.help,
-    form div.time-zone-select-field label span.help,
-    form div.submit-field label span.help {
-      display: block;
-      font-size: 60%;
-      font-weight: normal;
-      margin-top: 5px;
-      line-height: 100%; }
-form div.submit-field {
+	border: 1px solid #ff0000;
+}
+form div.fieldWithErrors input, form div.fieldWithErrors select {
+background-color:#FFE1E8;
+}
+
+form fieldset div.check-box-field,
+form fieldset div.check-box-fields,
+form fieldset div.date-field,
+form fieldset div.datetime-field,
+form fieldset div.file-field,
+form fieldset div.password-field,
+form fieldset div.radio-field,
+form fieldset div.radio-fields,
+form fieldset div.select-field,
+form fieldset div.text-field,
+form fieldset div.textarea-field,
+form fieldset div.time-zone-select-field,
+form fieldset div.submit-field {
+	float: left;
+	clear: both;
+	margin: 0;
+	font-size: 11px;
+	border-bottom-width: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-left-width: 0px;
+	padding-top: 10px;
+}
+  form  fieldset div.check-box-field div.input,
+  form  fieldset div.check-box-fields div.input,
+  form fieldset div.date-field div.input,
+  form fieldset div.datetime-field div.input,
+  form fieldset div.file-field div.input,
+  form fieldset div.password-field div.input,
+  form fieldset div.radio-field div.input,
+  form  fieldsetdiv.radio-fields div.input,
+  form fieldset div.select-field div.input,
+  form fieldset div.text-field div.input,
+  form fieldset div.textarea-field div.input,
+  form fieldset div.time-zone-select-field div.input,
+  form fieldset div.submit-field div.input {
+	float: left;
+	clear: right;
+	text-align: left;
+	width: 20em;
+	padding-left: 5px;
+}
+  form fieldset div.check-box-field label,
+  form fieldset div.check-box-fields label,
+  form fieldset div.date-field label,
+  form fieldset div.datetime-field label,
+  form fieldset div.file-field label,
+  form fieldset div.password-field label,
+  form fieldset div.radio-field label,
+  form fieldset div.radio-fields label,
+  form fieldset div.select-field label,
+  form fieldset div.text-field label,
+  form fieldset div.textarea-field label,
+  form fieldset div.time-zone-select-field label,
+  form fieldset div.submit-field label {
+	float: left;
+	display: block;
+	width: 12em;
+	padding-right: 10px;
+	text-align: right;
+}
+
+
+    form fieldset div.check-box-field label span.help,
+    form fieldset div.check-box-fields label span.help,
+    form fieldset div.date-field label span.help,
+    form fieldset div.datetime-field label span.help,
+    form fieldset div.file-field label span.help,
+    form fieldset div.password-field label span.help,
+    form fieldset div.radio-field label span.help,
+    form fieldset div.radio-fields label span.help,
+    form fieldset div.select-field label span.help,
+    form fieldset div.text-field label span.help,
+    form fieldset div.textarea-field label span.help,
+    form fieldset div.time-zone-select-field label span.help,
+    form fieldset div.submit-field label span.help {
+	display: block;
+	font-size: 60%;
+	font-weight: normal;
+	line-height: 100%;
+	margin-top: 5px;
+}
+form fieldset div.submit-field {
   border: none; }
-form div.submit-field div.input {
-  font-size: 16pt;
-  margin-left: 12em; }
-form div.check-box-fields div.input label,
-form div.radio-fields div.input label {
-  clear: left;
-  width: auto;
-  font-size: 80%; }
-form div.required {
+form fieldset div.submit-field div.input {
+	font-size: 12px;
+	margin-left: 12em;
+}
+form fieldset div.check-box-fields div.input label,
+form fieldset div.radio-fields div.input label {
+	clear: left;
+	font-size: 80%;
+	width: auto;
+}
+form fieldset div.required {
   float: left;
   line-height: 1.4em; }
-  form div.required label, form div.required p, form div.required span {
+  form fieldset div.required label, form fieldset div.required p, form fieldset div.required span {
     color: #944;
     font-weight: bold; }
-  form div.required label span.help {
+  form fieldset div.required label span.help {
     margin-top: 0; }
 
+form fieldset .date-field select {
+width: auto;
+font-size:10px
+}
+form fieldset .field_with_errors {
+}
+.errorExplanation {text-align:center;}
+.errorExplanation p, .errorExplanation ul {display:none;}
 /* End Forms */
