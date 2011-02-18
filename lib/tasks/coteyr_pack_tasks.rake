@@ -138,4 +138,8 @@ namespace :coteyr_pack do
       sh("ruby #{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/rails_log_parser.rb #{::Rails.root.to_s}/log/#{RAILS_ENV}.log")
     end
   end
+  desc "Restart"
+  task :restart do
+  	sh("touch #{::Rails.root.to_s}/tmp/restart.txt")
+	end
 end
