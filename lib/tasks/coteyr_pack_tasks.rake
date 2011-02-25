@@ -31,6 +31,7 @@ namespace :coteyr_pack do
     plugin_dir = File.join(File.dirname(__FILE__), '..')
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp(File.join(plugin_dir, '..', 'Gemfile'),  ::Rails.root.to_s, :verbose=>true)
   end
   namespace :mac do
     desc "This starts the Ease of use Menu"
