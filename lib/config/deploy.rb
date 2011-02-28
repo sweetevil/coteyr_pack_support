@@ -27,6 +27,18 @@ set :scm, "git"
 ssh_options[:forward_agent] = true
 #Paths
 
+# If you are using Passenger mod_rails uncomment this:
+# if you're still using the script/reapear helper you will need
+# these http://github.com/rails/irs_process_scripts
+ namespace :deploy do
+   task :start do
+   end
+   task :stop do
+   end
+   task :restart, :roles => :app, :except => { :no_release => true } do
+     run "touch #{current_path}/tmp/restart.txt"
+   end
+ end
 #Passenger
 namespace :passenger do
     desc "Restart Application"
@@ -41,5 +53,5 @@ namespace :passenger do
 end
 
 
-after :deploy, "passenger:restart"
+#after :deploy, "passenger:restart"
 
