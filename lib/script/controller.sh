@@ -17,7 +17,7 @@
 FIRST=`pwd`
 cd $1
 CHOICE=`kdialog --title "Controller Name" --inputbox "Controller Name"`
-rails generate controller $CHOICE
+script/generate controller $CHOICE
 cd $FIRST
 kate $1/app/controllers/${CHOICE}_controller.rb
 kate $1/test/functional/${CHOICE}_controller_test.rb

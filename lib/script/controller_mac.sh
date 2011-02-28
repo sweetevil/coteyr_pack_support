@@ -13,14 +13,11 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+
 FIRST=`pwd`
-cd $1
-CHOICE=`kdialog --title "Model Name" --inputbox "Model Name"`
-script/generate model $CHOICE
-cd $FIRST
-
-
-kate $1/test/unit/${CHOICE}_test.rb
-kate $1/test/fixtures/${CHOICE}s.yml
-kate $1/app/models/${CHOICE}.rb
-kate $1/db/migrate/*_create_${CHOICE}s.rb
+cd "$1"
+CHOICE=`CocoaDialog inputbox ‑‑informative‑text "Controller Name" --button1 "Ok" | sed 1d`
+rails g controller $CHOICE
+cd "$FIRST"
+coda "$1/app/controllers/${CHOICE}_controller.rb"
+coda "$1/app/helpers/${CHOICE}_helper.rb"

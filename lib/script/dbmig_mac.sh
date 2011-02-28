@@ -15,12 +15,16 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 FIRST=`pwd`
 cd $1
-CHOICE=`kdialog --title "Model Name" --inputbox "Model Name"`
-script/generate model $CHOICE
-cd $FIRST
-
-
-kate $1/test/unit/${CHOICE}_test.rb
-kate $1/test/fixtures/${CHOICE}s.yml
-kate $1/app/models/${CHOICE}.rb
-kate $1/db/migrate/*_create_${CHOICE}s.rb
+cd db/migrate/
+OPT=""
+for i in *; do
+NUM=`echo "$i" | cut -d_ -f1`
+NAME=`echo "$i"`
+OPT="$OPT $NAME"
+done
+CHOICE=`CocoaDialog dropdown --informative-text "Choose Version" --button1 "Ok" --items "Current Version" $OPT --string-output | sed 1d`
+if [ "$CHOICE" = "Current Version" ]; then
+	xterm -e "cd $1; rake db:migrate; echo Complete; sleep 30"
+else
+	xterm -e "cd $1; rake db:migrate VERSION=$CHOICE; echo Complete; sleep 30"
+fi

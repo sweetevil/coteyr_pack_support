@@ -28,5 +28,5 @@ while [ "$BLOB" = "false" ]; do
   cd ..
 done
 cd $LAST
-konsole -workdir `pwd` -e rails server
+konsole -workdir `pwd` -e script/server start
 cd $FIRST
