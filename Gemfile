@@ -20,7 +20,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'aws-s3', :require => 'aws/s3'
 
 source 'http://rubygems.org'
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.4'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
