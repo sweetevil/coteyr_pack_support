@@ -18,6 +18,7 @@ gem 'capistrano'
 gem 'capistrano-ext'
 gem 'rmagick', :require => 'RMagick'
 gem 'aws-s3', :require => 'aws/s3'
+gem 'rcov', :require=>false
 
 source 'http://rubygems.org'
 gem 'rails', '3.0.4'
