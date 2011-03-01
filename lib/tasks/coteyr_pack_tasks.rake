@@ -20,6 +20,7 @@ namespace :coteyr_pack do
   task :setup do
     plugin_dir = File.join(File.dirname(__FILE__), '..')
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'public')], File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'test')], File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'config')], File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, '..', '.gitignore'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, '..', '.metrics'), File.join(RAILS_ROOT), :verbose => true)
