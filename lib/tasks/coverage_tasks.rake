@@ -25,7 +25,8 @@ namespace :coverage do
  
   desc 'All unit test coverage'
   task :all => :clean do
-    system("#{Rcov} --html */*_test.rb")
+    system("#{Rcov} --html */**_test.rb")
+    
     display_coverage
   end
  
