@@ -289,7 +289,7 @@ module Fleximage
         raise 'No image directory was defined, cannot generate path' unless directory
 
         # base directory
-        directory = "#{RAILS_ROOT}/#{directory}" unless /^\// =~ directory
+        directory = "#{Rails.root.to_s}/#{directory}" unless /^\// =~ directory
 
         # specific creation date based directory suffix.
         creation = self[:created_at] || self[:created_on]
@@ -486,7 +486,8 @@ module Fleximage
       #     image.resize '320x240'
       #   end
       def operate(&block)
-        returning self do
+      	tap do 
+        #returning self do
           proxy = ImageProxy.new(load_image, self)
           block.call(proxy)
           @output_image = proxy.image
@@ -689,7 +690,7 @@ module Fleximage
 
         # Delete the temp image after its no longer needed
         def delete_temp_image
-          FileUtils.rm_rf "#{RAILS_ROOT}/tmp/fleximage/#{@image_file_temp}"
+          FileUtils.rm_rf "#{Rails.root.to_s}/tmp/fleximage/#{@image_file_temp}"
         end
 
         # Load the default image, or raise an expection
