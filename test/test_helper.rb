@@ -13,6 +13,29 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
-require 'rubygems'
-require 'active_support'
-require 'active_support/test_case'
+ENV["RAILS_ENV"] = "test"
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
+
+class ActiveSupport::TestCase
+  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
+  #
+  # Note: You'll currently still have to declare fixtures explicitly in integration tests
+  # -- they do not yet inherit this setting
+  fixtures :all
+
+  # Add more helper methods to be used by all tests here...
+  def assert_not_blank(model, fields, valid_value=nil)
+  	if fields.kind_of? Array
+  		for field in fields
+  			assert_not_blank model, field, valid_value
+			end
+		else
+			valid_value = model[fields] if valid_value.nil?
+			model[fields] = nil
+			assert !model.save, "#{fields} saved when nil"
+			model[fields] = valid_value
+			assert model.save!, "#{fields} did not save when not nill"
+		end
+	end
+end

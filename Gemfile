@@ -25,6 +25,11 @@ gem 'rails', '3.0.4'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'autotest'
+  gem 'autotest-growl'
+  gem 'redgreen'
+  gem 'autotest-fsevent'
+  gem 'metrical'
 end
 
 group :production, :staging do
