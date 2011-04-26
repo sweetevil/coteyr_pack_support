@@ -212,7 +212,7 @@ form fieldset div.text-field,
 form fieldset div.textarea-field,
 form fieldset div.time-zone-select-field,
 form fieldset div.submit-field {
-	float: left;
+	/*float: left;*/
 	clear: both;
 	margin: 0;
 	font-size: 11px;
