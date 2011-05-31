@@ -50,7 +50,7 @@ namespace :coteyr_pack do
     end
     desc "Run All tests"
     task :test_all do
-      sh ("xterm  -T testing -e \"cd #{::Rails.root.to_s}; rake test; sleep 90;\"")
+      sh ("rake test")
     end
     desc "Run Autotest"
     task :auto_test do
@@ -145,4 +145,12 @@ namespace :coteyr_pack do
   task :restart do
   	sh("touch #{::Rails.root.to_s}/tmp/restart.txt")
 	end
+	
+end
+
+namespace :sass do
+  desc 'Updates stylesheets if necessary from their Sass templates.'
+  task :update => :environment do
+    Sass::Plugin.update_stylesheets
+  end
 end

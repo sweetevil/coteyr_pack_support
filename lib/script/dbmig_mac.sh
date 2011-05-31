@@ -24,7 +24,9 @@ OPT="$OPT $NAME"
 done
 CHOICE=`CocoaDialog dropdown --informative-text "Choose Version" --button1 "Ok" --items "Current Version" $OPT --string-output | sed 1d`
 if [ "$CHOICE" = "Current Version" ]; then
-	xterm -e "cd $1; rake db:migrate; echo Complete; sleep 30"
+	rake db:migrate
+	echo Complete
 else
-	xterm -e "cd $1; rake db:migrate VERSION=$CHOICE; echo Complete; sleep 30"
+	rake db:migrate VERSION=$CHOICE
+	echo Complete
 fi
