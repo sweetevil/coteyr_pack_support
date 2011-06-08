@@ -21,7 +21,7 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'rcov', :require=>false
 
 source 'http://rubygems.org'
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.7'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
