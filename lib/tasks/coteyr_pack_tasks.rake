@@ -19,20 +19,20 @@ namespace :coteyr_pack do
   desc "Use this task to install coteyr_pack. Be advised files will be overwritten"
   task :setup do
     plugin_dir = File.join(File.dirname(__FILE__), '..')
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'public')], File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'test')], File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'config')], File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, '..', '.gitignore'), File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, '..', '.metrics'), File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, '..', 'Capfile'), File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'script')], File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'public')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'test')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'config')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, '..', '.gitignore'), File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, '..', '.metrics'), File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, '..', 'Capfile'), File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'script')], File.join(Rails.root), :verbose => true)
     puts "Finished."
   end
   desc "Copy Application.html.erb and other first time files"
   task :first_time do
     plugin_dir = File.join(File.dirname(__FILE__), '..')
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'app')], File.join(Rails.root), :verbose => true)
     FileUtils.cp(File.join(plugin_dir, '..', 'Gemfile'),  ::Rails.root.to_s, :verbose=>true)
   end
   namespace :mac do
