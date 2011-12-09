@@ -122,7 +122,7 @@ form fieldset select option,
 form fieldset textarea {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	font-color: #000;
+	color: #000;
 	border-top-width: 0px;
 	border-right-width: 0px;
 	border-bottom-width: 0px;
@@ -131,11 +131,11 @@ form fieldset textarea {
 	text-decoration: none;
 	color: #333333;
 }
-form fieldset legend,
+form fieldset legend
  {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
-	font-color: #000;
+	color: #000;
 	border-top-width: 0px;
 	border-right-width: 0px;
 	border-bottom-width: 0px;
@@ -153,7 +153,7 @@ form  fieldset textarea {
 	width: 20em;
 	height: 20px;
 }
-form fieldset input,
+form fieldset input
  {
 	font-size: 12px;
 	border: 1px solid #b5b7b7;
