@@ -20,7 +20,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Site Name</title>
-        <%= javascript_include_tag :defaults, 'sorttable' %>
+        <%= javascript_include_tag :application, 'sorttable' %>
         <%= stylesheet_link_tag('base','forms') %>
     </head>
     <body>
@@ -33,7 +33,13 @@
         </ul>
       </div>
       <div class="content">
-
+        <% for flsh in @FLASH_NAMES %>
+          <% if flash[flsh] %>
+            <div id="flash-<%= flsh %>" class="flash">
+              <%= flash[flsh] %>
+            </div>
+          <% end %>
+        <% end %>
         <%= yield :layout %>
       </div>
     </body>
