@@ -23,6 +23,7 @@ namespace :coteyr_pack do
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'test')], File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'config')], File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, '..', '.gitignore'), File.join(RAILS_ROOT), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, '..', '.rvmrc'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, '..', '.metrics'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, '..', 'Capfile'), File.join(RAILS_ROOT), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'script')], File.join(RAILS_ROOT), :verbose => true)
