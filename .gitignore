@@ -23,4 +23,5 @@ config/database.yml
 *.tar.bz
 *.tbz
 *.psd
+.sass-cache/**
 
