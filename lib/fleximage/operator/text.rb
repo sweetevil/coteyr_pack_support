@@ -91,7 +91,7 @@ module Fleximage
         # assign font path with to rails root unless the path is absolute
         if options[:font]
           font = options[:font]
-          font = "#{RAILS_ROOT}/#{font}" unless font =~ %r{^(~?|[A-Za-z]:)/}
+          font = "#{Rails.root.to_s}/#{font}" unless font =~ %r{^(~?|[A-Za-z]:)/}
           text.font = font
         end
 

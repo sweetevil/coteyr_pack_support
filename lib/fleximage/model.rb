@@ -443,7 +443,7 @@ module Fleximage
       def image_file_temp=(file_name)
         if !@uploaded_image && file_name && file_name.present? && file_name !~ %r{\.\./}
           @image_file_temp = file_name
-          file_path = "#{RAILS_ROOT}/tmp/fleximage/#{file_name}"
+          file_path = "#{Rails.root.to_s}/tmp/fleximage/#{file_name}"
 
           @dont_save_temp = true
           if File.exists?(file_path)
@@ -680,7 +680,7 @@ module Fleximage
         def save_temp_image(file)
           file_name = file.respond_to?(:original_filename) ? file.original_filename : file.path
           @image_file_temp = Time.now.to_f.to_s.sub('.', '_')
-          path = "#{RAILS_ROOT}/tmp/fleximage"
+          path = "#{Rails.root.to_s}/tmp/fleximage"
           FileUtils.mkdir_p(path)
           File.open("#{path}/#{@image_file_temp}", 'wb') do |f|
             file.rewind
