@@ -14,14 +14,14 @@
    #    You should have received a copy of the GNU General Public License
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <% @FLASH_NAMES = [:info, :error, :warning] %>
-<html  xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Site Name</title>
-        <%= javascript_include_tag :defaults, 'sorttable' %>
-        <%= stylesheet_link_tag('base','forms') %>
+        <%= javascript_include_tag :application %>
+        <%= stylesheet_link_tag(:application) %>
     </head>
     <body>
       <div class="header">
@@ -33,7 +33,13 @@
         </ul>
       </div>
       <div class="content">
-
+        <% for flsh in @FLASH_NAMES %>
+          <% if flash[flsh] %>
+            <div id="flash-<%= flsh %>" class="flash">
+              <%= flash[flsh] %>
+            </div>
+          <% end %>
+        <% end %>
         <%= yield :layout %>
       </div>
     </body>
