@@ -36,4 +36,7 @@ end
 
 group :production, :staging do
   gem 'mysql'
+  gem 'uglifier'
+  gem 'execjs'
+  gem 'therubyracer'
 end
