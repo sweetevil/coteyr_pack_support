@@ -58,7 +58,7 @@ namespace :sass do
   end
 
   # Generate all the stylesheets manually (from their Sass templates) before each restart.
-  before 'deploy:restart', 'sass:update'
+  #before 'deploy:restart', 'sass:update'
 end
 
 #after :deploy, "passenger:restart"
