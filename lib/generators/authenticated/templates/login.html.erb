@@ -1,16 +1,30 @@
-<h1>Log In</h1>
+<%%= form_title "Log in" %>
+<%%= form_tag <%= controller_routing_name %>_path do %>
+  <%%= field_set_tag 'Login Credentials' do %>
+    <div class="text-field ">
+      <%%= label_tag 'login' %>
+      <div class="input">
+        <%%= text_field_tag 'login', @login %>
+      </div>
+    </div>
+    <div class="text-field ">
+      <%%= label_tag 'password' %>
+       <div class="input">
+        <%%= password_field_tag 'password', nil %>
+      </div>
+    </div>
+    <div class="check-box-field ">
+      <%%= label_tag 'remember_me', 'Remember me' %>
+      <div class="input">
+        <%%= check_box_tag 'remember_me', '1', @remember_me %>
+      </div>
+    </div>
+    
+    <div class="submit-field ">
+      <div class="input">
+        <%%= submit_tag 'Log in' %>
+      </div>
+    </div>
+  <%% end %>
+<%% end %>
 
-<%%= form_tag <%= controller_routing_name %>_path do -%>
-<p><%%= label_tag 'login' %><br />
-<%%= text_field_tag 'login', @login %></p>
-
-<p><%%= label_tag 'password' %><br/>
-<%%= password_field_tag 'password', nil %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><%%= label_tag 'remember_me', 'Remember me' %>
-<%%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%%= submit_tag 'Log in' %></p>
-<%% end -%>
