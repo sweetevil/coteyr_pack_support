@@ -145,15 +145,18 @@ module RequestLogAnalyzer::Output
         ', :type => "text/css")
       end
       @io << '<body>'
+      @io << '<p>'
+      @io << tag(:img, nil, :src=>'http://tracker.coteyr.net/images/logo.png')
+      @io << '</p>'
+      @io << tag(:h2, '(813)-421-4338')
       @io << tag(:h1, 'Request-log-analyzer summary report')
-      @io << tag(:p, "Version #{RequestLogAnalyzer::VERSION} - written by Willem van Bergen and Bart ten Brinke")
+      @io << tag(:p, "Version #{RequestLogAnalyzer::VERSION}")
     end
 
     # Generate a footer for a report
     def footer
-      @io << tag(:hr) << tag(:h2, 'Thanks for using request-log-analyzer')
-      @io << tag(:p, 'For more information please visit the ' + link('Request-log-analyzer website', 'http://github.com/wvanbergen/request-log-analyzer'))
-      @io << tag(:p, 'If you need an expert who can analyze your application, mail to ' + link('contact@railsdoctors.com', 'mailto:contact@railsdoctors.com') + ' or visit us at ' + link('http://railsdoctors.com', 'http://railsdoctors.com') + '.')
+      @io << tag(:hr)
+      @io << tag(:p, 'Website: ' + link('www.coteyr.net', 'http://www.coteyr.net'))
       @io << "</body></html>\n"
     end
 
