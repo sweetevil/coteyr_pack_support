@@ -60,6 +60,11 @@ namespace :sass do
   # Generate all the stylesheets manually (from their Sass templates) before each restart.
   #before 'deploy:restart', 'sass:update'
 end
-
+namespace :log do
+  desc 'Generates Stats Report and emails it'
+  task :stats, :roles=>:app do
+    invoke_command "cd #{latest_release}; RAILS_ENV=#{rails_env} bundle exec rake coteyr_pack:log:stats"
+  end
+end
 #after :deploy, "passenger:restart"
 
