@@ -139,7 +139,11 @@ namespace :coteyr_pack do
   namespace :log do
     desc "Statitcs"
     task :stats do
-      sh("ruby #{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/rails_log_parser.rb #{::Rails.root.to_s}/log/#{RAILS_ENV}.log")
+      if Rails.env == "production"
+        sh("#{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --mail coteyr@coteyr.net #{::Rails.root.to_s}/log/#{Rails.env}.log")
+      else
+        sh("#{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --file /tmp/anaylizer.html #{::Rails.root.to_s}/log/#{Rails.env}.log")
+      end
     end
   end
   desc "Restart"
