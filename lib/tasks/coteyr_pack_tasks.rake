@@ -75,7 +75,7 @@ namespace :coteyr_pack do
     end
     desc "Run Autotest"
     task :auto_test do
-      sh ("xterm -T Testing -e \"cd #{::Rails.root.to_s}; autotest\"")
+      sh ("cd #{::Rails.root.to_s}; autotest")
     end
     desc "Run the console"
     task :console do
