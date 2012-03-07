@@ -28,3 +28,5 @@ require 'action_mailer'
 #require File.dirname(__FILE__) + '/lib/exception_notifier.rb'
 #require File.dirname(__FILE__) + '/lib/exception_notifiable.rb'
 #require File.dirname(__FILE__) + '/lib/exception_notifier_helper.rb'
+
+raise "garbage"
