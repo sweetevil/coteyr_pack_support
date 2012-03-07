@@ -13,12 +13,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://www.coteyr.net"
   s.summary     = "Internal tools and modifications to old plugins/gems"
   s.description = "Internal tools and modificatoins to old plugins and gems to keep ruby development fast and cheap for my clients."
- 
   s.required_rubygems_version = ">= 1.3.6"
-
- 
-
- 
-  s.files        = Dir.glob("{bin,lib}/**/*") + %w(LICENSE README.md ROADMAP.md CHANGELOG.md)
+  s.files        = Dir.glob("{bin,lib}/**/*") + %w()
   s.require_path = 'lib'
 end
