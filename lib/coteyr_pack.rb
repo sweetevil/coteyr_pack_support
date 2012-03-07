@@ -28,4 +28,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), %w(fleximage)))
 require 'action_mailer'
 
 #Include rake tasks
-Dir["tasks/**/*.rake"].each { |ext| load ext } if defined?(Rake)
+class CoteyrPackTask < Rails::Railtie
+  rake_tasks do
+    Dir[File.join(File.dirname(__FILE__),'tasks/*.rake')].each { |f| load f }
+  end
+end
