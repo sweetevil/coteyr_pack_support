@@ -18,7 +18,7 @@
 namespace :coteyr_pack do
   desc "Use this task to install coteyr_pack. Be advised files will be overwritten"
   task :setup do
-    plugin_dir = File.join(File.dirname(__FILE__), '..')
+    plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'public')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'test')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'config')], File.join(Rails.root), :verbose => true)
@@ -33,7 +33,7 @@ namespace :coteyr_pack do
   end
   desc "Update files when updating the gem. Will overwrite some files."
   task :update do
-    plugin_dir = File.join(File.dirname(__FILE__), '..')
+    plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
     FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Gemfile'),  ::Rails.root.to_s, :verbose=>true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), :verbose => true)
