@@ -1,5 +1,5 @@
 require 'action_dispatch'
-require '../exception_notifier/notifier'
+require require File.dirname(__FILE__) + '/../exception_notifier/notifier'
 
 class ExceptionNotifier
   def self.default_ignore_exceptions
