@@ -79,7 +79,7 @@ namespace :coteyr_pack do
     end
     desc "Run the console"
     task :console do
-      sh ("xterm -T Console -e \"cd #{::Rails.root.to_s}; script/console \"")
+      sh ("cd #{::Rails.root.to_s}; script/console ")
     end
     desc "Run the Controller Generator (not script/generate but the wrapper)"
     task :controller do
@@ -99,11 +99,11 @@ namespace :coteyr_pack do
     end
     desc "View Logs"
     task :log do
-      sh ("konsole -workdir #{::Rails.root.to_s}  -e tail -n 100 -f '#{::Rails.root.to_s}/log/development.log'")
+      sh ("open -a Console.app '#{::Rails.root.to_s}/log/development.log'")
     end
     desc "Start the dev server"
     task :server do
-      sh("xterm -e  \"cd #{::Rails.root.to_s}; script/server;sleep 20\" &")
+      sh("sudo apachectl -k start")
     end
   end
   namespace :linux do
