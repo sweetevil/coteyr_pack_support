@@ -15,3 +15,4 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 # CoteyrPack
+raise "coteyr pack"
