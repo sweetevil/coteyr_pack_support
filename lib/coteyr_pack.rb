@@ -22,7 +22,7 @@ require File.dirname(__FILE__) + '/semantic_form_builder.rb'
 require File.join(File.dirname(__FILE__), 'restful-authentication', 'lib', "authentication")
 require File.join(File.dirname(__FILE__), 'restful-authentication', 'lib', "authentication", "by_password")
 require File.join(File.dirname(__FILE__), 'restful-authentication', 'lib', "authentication", "by_cookie_token")
-require File.expand_path(File.join(File.dirname(__FILE__), %w(lib fleximage)))
+require File.expand_path(File.join(File.dirname(__FILE__), %w(fleximage)))
 
 require 'action_mailer'
 
