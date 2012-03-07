@@ -1,7 +1,7 @@
 module ActionView
   module TemplateHandlers
-    class Rails3View < TemplateHandler
-      include Compilable
+    class Rails3View 
+      #include Compilable
       class TemplateDidNotReturnImage < RuntimeError #:nodoc:
       end
 
