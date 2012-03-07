@@ -27,3 +27,5 @@ require File.expand_path(File.join(File.dirname(__FILE__), %w(fleximage)))
 
 require 'action_mailer'
 
+#Include rake tasks
+Dir["tasks/**/*.rake"].each { |ext| load ext } if defined?(Rake)
