@@ -79,7 +79,7 @@ namespace :coteyr_pack do
     end
     desc "Run the console"
     task :console do
-      sh ("cd #{::Rails.root.to_s}; script/console ")
+      sh ("cd #{::Rails.root.to_s}; bundle exec rails c ")
     end
     desc "Run the Controller Generator (not script/generate but the wrapper)"
     task :controller do
