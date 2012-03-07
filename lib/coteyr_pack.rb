@@ -27,6 +27,9 @@ require File.expand_path(File.join(File.dirname(__FILE__), %w(fleximage)))
 
 require 'action_mailer'
 
+
+#Include Validators
+ Dir[File.join(File.dirname(__FILE__),'validators/*.rb')].each { |f| require f }
 #Include rake tasks
 class CoteyrPackTask < Rails::Railtie
   rake_tasks do

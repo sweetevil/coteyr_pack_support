@@ -21,6 +21,7 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'rcov', :require=>false
 gem 'sass'
 gem "jquery-rails"
+gem 'coteyr_pack', :git=>"git@git.coteyr.net:coteyr_pack.git"
 
 source 'http://rubygems.org'
 gem 'rails', '3.1.3'
