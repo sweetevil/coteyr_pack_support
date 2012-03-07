@@ -15,4 +15,4 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 # CoteyrPack
-require File.dirname(__FILE__) + '../lib/initilizers/exception_notifier.rb'
+require File.dirname(__FILE__) + '/../lib/initilizers/exception_notifier.rb'
