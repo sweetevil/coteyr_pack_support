@@ -16,8 +16,9 @@
 
 # CoteyrPack
 require File.dirname(__FILE__) + '/../lib/initilizers/exception_notifier.rb'
-require File.dirname(__FILE__) + '/../lib/semantic_form_builder.rb'
 require File.dirname(__FILE__) + '/../lib/semantic_form_helper.rb'
+require File.dirname(__FILE__) + '/../lib/semantic_form_builder.rb'
+
 require File.join('..', File.dirname(__FILE__), "..", "lib", 'restful-authentication', 'lib', "authentication")
 require File.join('..', File.dirname(__FILE__), "..", "lib", 'restful-authentication', 'lib', "authentication", "by_password")
 require File.join('..', File.dirname(__FILE__), "..", "lib", 'restful-authentication', 'lib', "authentication", "by_cookie_token")
