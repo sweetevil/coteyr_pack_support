@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Robert Cotey"]
   s.email       = ["coteyr@coteyr.net"]
   s.homepage    = "http://www.coteyr.net"
-  s.summary     = "Internal tools and modifications to old plugins/gems".
+  s.summary     = "Internal tools and modifications to old plugins/gems"
   s.description = "Internal tools and modificatoins to old plugins and gems to keep ruby development fast and cheap for my clients."
  
   s.required_rubygems_version = ">= 1.3.6"
