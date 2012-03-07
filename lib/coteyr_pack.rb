@@ -15,6 +15,7 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 # CoteyrPack
+require File.dirname(__FILE__) + '/restful.rb'
 require File.dirname(__FILE__) + '/initilizers/exception_notifier.rb'
 require File.dirname(__FILE__) + '/semantic_form_helper.rb'
 require File.dirname(__FILE__) + '/semantic_form_builder.rb'
