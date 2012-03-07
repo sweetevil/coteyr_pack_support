@@ -159,10 +159,11 @@ namespace :coteyr_pack do
   namespace :log do
     desc "Statitcs"
     task :stats do
+      plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
       if Rails.env == "production"
-        sh("#{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --mail coteyr@coteyr.net #{::Rails.root.to_s}/log/#{Rails.env}.log")
+        sh("#{plugin_dir}/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --mail coteyr@coteyr.net #{::Rails.root.to_s}/log/#{Rails.env}.log")
       else
-        sh("#{::Rails.root.to_s}/vendor/plugins/coteyr_pack/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --file /tmp/anaylizer.html #{::Rails.root.to_s}/log/#{Rails.env}.log")
+        sh("#{plugin_dir}/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --file /tmp/anaylizer.html #{::Rails.root.to_s}/log/#{Rails.env}.log")
       end
     end
   end
