@@ -30,6 +30,13 @@ namespace :coteyr_pack do
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), :verbose => true)
     
     puts "Finished."
+    puts "========================="
+    puts "Make sure to update the settings in config/initializers/exceptions.rb before you attempt"
+    puts "to run any other tasks."
+    puts "========================="
+    puts "Pay special attention that you reload your environment (rvm)."
+    puts "Then make sure to run bundle update."
+    
   end
   desc "Update files when updating the gem. Will overwrite some files."
   task :update do
@@ -40,6 +47,13 @@ namespace :coteyr_pack do
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.metrics'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
+    
+    puts "Finished."
+    puts "========================="
+    puts "Some application files were overwritten make sure to check them against git."
+    puts "before committing next time. You may also wish to run bundle update."
+    puts "========================="
+    puts "Pay special attention that you reload your environment (rvm)."
   end
   
   namespace :mac do
