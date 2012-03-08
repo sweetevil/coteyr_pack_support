@@ -1,18 +1,3 @@
-# Copyright (c) 2010 by Robert D. Cotey II
-#    This file is part of coteyr_pack.
-#
-#    coteyr_pack is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    coteyr_pack is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 require 'active_support' unless defined?(ActiveSupport)
 
 class Class
@@ -26,9 +11,9 @@ class Class
       when Proc     then writer
       else raise TypeError, "DSL Error: writer should be a symbol or proc. but got `#{options[:writer].class}'"
       end
-    #write_inheritable_attribute(:"#{name}_writer", writer)
-    class_attribute(:"#{name}_writer", writer)
-    
+    class_attribute :"#{name}_writer"
+    class_attribute :"#{name}_value"
+    self.send(:"#{name}_writer=", writer)
 
     default =
       case options[:default]
@@ -39,32 +24,31 @@ class Class
       when Proc     then options[:default]
       else Proc.new{options[:default]}
       end
-    #write_inheritable_attribute(:"#{name}_default", default)
-    class_attribute(:"#{name}_default", default)
-    
+    class_attribute :"#{name}_default"
+    self.send(:"#{name}_default=", default)
+
     self.class.class_eval do
       define_method("#{name}=") do |value|
-        writer = read_inheritable_attribute(:"#{name}_writer")
+        writer = self.send(:"#{name}_writer")
         value  = writer.call(value) if writer
-        write_inheritable_attribute(:"#{name}", value)
+        self.send(:"#{name}_value=", value)
       end
 
       define_method(name) do |*values|
         if values.empty?
           # getter method
           key = :"#{name}"
-          if !inheritable_attributes.has_key?(key)
-            default = read_inheritable_attribute(:"#{name}_default")
+          if !self.respond_to?(key)
+            default = self.send(:"#{name}_default")
             value   = default ? default.call(self) : nil
-            __send__("#{name}=", value)
+            self.send("#{name}_value=", value)
           end
-          read_inheritable_attribute(key)
+          self.send("#{key}_value")
         else
           # setter method
-          __send__("#{name}=", *values)
+          __send__("#{name}_value=", *values)
         end
       end
     end
   end
 end
-
