@@ -14,7 +14,8 @@
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.module Fleximage
+#    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+module Fleximage
   module Operator
         
     # Resize this image, constraining proportions.  Options allow cropping, stretching, upsampling and
