@@ -18,11 +18,6 @@ module Fleximage
     #
     # * +image_directory+: (String, no default) Where the master images are stored, directory path relative to your 
     #   app root.
-    # * +use_creation_date_based_directories+: (Boolean, default +true+) If true, master images will be stored in
-    #   directories based on creation date.  For example: <tt>"#{image_directory}/2007/11/24/123.png"</tt> for an
-    #   image with an id of 123 and a creation date of November 24, 2007.  Turing this off would cause the path
-    #   to be "#{image_directory}/123.png" instead.  This helps keep the OS from having directories that are too 
-    #   full.
     # * +require_image+: (Boolean, default +true+) The model will raise a validation error if no image is uploaded
     #   with the record.  Setting to false allows record to be saved with no images.
     # * +missing_image_message+: (String, default "is required") Validation message to display when no image was uploaded for 
@@ -46,7 +41,6 @@ module Fleximage
     #   class Photo < ActiveRecord::Base
     #     acts_as_fleximage do 
     #       image_directory 'public/images/uploaded'
-    #       use_creation_date_based_directories true
     #       require_image             true
     #       missing_image_message     'is required'
     #       invalid_image_message     'was not a readable image'
@@ -252,7 +246,7 @@ module Fleximage
         
         # specific creation date based directory suffix.
         creation = self[:created_at] || self[:created_on]
-        if self.class.use_creation_date_based_directories && creation 
+        if creation 
           "#{directory}/#{creation.year}/#{creation.month}/#{creation.day}"
         else
           directory
