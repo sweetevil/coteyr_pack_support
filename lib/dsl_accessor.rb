@@ -26,7 +26,9 @@ class Class
       when Proc     then writer
       else raise TypeError, "DSL Error: writer should be a symbol or proc. but got `#{options[:writer].class}'"
       end
-    write_inheritable_attribute(:"#{name}_writer", writer)
+    #write_inheritable_attribute(:"#{name}_writer", writer)
+    class_attribute(:"#{name}_writer", writer)
+    
 
     default =
       case options[:default]
@@ -37,8 +39,9 @@ class Class
       when Proc     then options[:default]
       else Proc.new{options[:default]}
       end
-    write_inheritable_attribute(:"#{name}_default", default)
-
+    #write_inheritable_attribute(:"#{name}_default", default)
+    class_attribute(:"#{name}_default", default)
+    
     self.class.class_eval do
       define_method("#{name}=") do |value|
         writer = read_inheritable_attribute(:"#{name}_writer")
