@@ -23,10 +23,6 @@ module Fleximage
     #   image with an id of 123 and a creation date of November 24, 2007.  Turing this off would cause the path
     #   to be "#{image_directory}/123.png" instead.  This helps keep the OS from having directories that are too 
     #   full.
-    # * +image_storage_format+: (:png or :jpg, default :png) The format of your master images.  Using :png will give 
-    #   you the best quality, since the master images as stored as lossless version of the original upload.  :jpg 
-    #   will apply lossy compression, but the master image file sizes will be much smaller.  If storage space is a 
-    #   concern, us :jpg.
     # * +require_image+: (Boolean, default +true+) The model will raise a validation error if no image is uploaded
     #   with the record.  Setting to false allows record to be saved with no images.
     # * +missing_image_message+: (String, default "is required") Validation message to display when no image was uploaded for 
@@ -51,7 +47,6 @@ module Fleximage
     #     acts_as_fleximage do 
     #       image_directory 'public/images/uploaded'
     #       use_creation_date_based_directories true
-    #       image_storage_format      :png
     #       require_image             true
     #       missing_image_message     'is required'
     #       invalid_image_message     'was not a readable image'
@@ -564,7 +559,7 @@ module Fleximage
             perform_preprocess_operation
             
             # Convert to storage format
-            @uploaded_image.format = self.class.image_storage_format.to_s.upcase unless respond_to?(:image_format)
+            @uploaded_image.format = "PNG" unless respond_to?(:image_format)
             
             # Write image data to the DB field
             if self.class.db_store?
