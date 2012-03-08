@@ -293,7 +293,7 @@ module Fleximage
 
         # specific creation date based directory suffix.
         creation = self[:created_at] || self[:created_on]
-        if self.class.use_creation_date_based_directories && creation
+        if creation
           "#{directory}/#{creation.year}/#{creation.month}/#{creation.day}"
         else
           directory
@@ -310,16 +310,16 @@ module Fleximage
       # Returns original format of the image if the image_format column exists
       # otherwise returns the globally set format.
       def extension
-        if self.respond_to?( :image_format)
+        #if self.respond_to?( :image_format)
           case image_format
           when "JPEG"
             "jpg"
           else
             image_format ? image_format.downcase : self.class.image_storage_format
           end
-        else
-          self.class.image_storage_format
-        end
+        #else
+        #  self.class.image_storage_format
+       # end
       end
 
       def url_format
