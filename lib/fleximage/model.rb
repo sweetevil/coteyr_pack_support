@@ -120,7 +120,7 @@ module Fleximage
         dsl_accessor :use_creation_date_based_directories, :default => true
         
         # The format are master images are stored in
-        dsl_accessor :image_storage_format, :default => 'png'
+        #dsl_accessor :image_storage_format, :default => 'png' #This doesn't need to be selectable
         
         # Require a valid image.  Defaults to true.  Set to false if its ok to have no image for
         dsl_accessor :require_image, :default => true
@@ -279,10 +279,10 @@ module Fleximage
           when "JPEG"
             "jpg"
           else
-            image_format ? image_format.downcase : self.class.image_storage_format
+            "png" #this is not always best for me.
           end
         else
-          self.class.image_storage_format
+          "png"
         end
       end
       
