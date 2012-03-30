@@ -55,7 +55,8 @@ module Authentication
       def forget_me
         self.remember_token_expires_at = nil
         self.remember_token            = nil
-        self.save()
+        self.save(:validate=>false)
+        return true
       end
     end # instance methods
   end
