@@ -19,7 +19,7 @@ module Restful
         instance_variable_set("@#{@klass.name.underscore.downcase.pluralize}", objs)
         respond_to do |format|
             format.html
-            format.xml {render :xml=>objs.to_xml}
+            format.xml {render :xml=>objs}
             format.json {render :json=>objs.to_json}
             format.js {}
         end
