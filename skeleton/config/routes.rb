@@ -14,7 +14,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
-APPNAME::Application.routes.draw do
+APPLICATION_NAME_HERE::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
