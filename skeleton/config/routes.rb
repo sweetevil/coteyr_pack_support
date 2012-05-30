@@ -76,6 +76,7 @@ APPLICATION_NAME_HERE::Application.routes.draw do
    if Rails.env.development? #normally you would not want to use an if block because it is only evaluated once per server thread, however this is fine here
      match 'app/views/:controller(/:action)(.:format).erb', :id=>1
      match 'app/controllers/:controller(_controller.rb)', :action=>:index
+     match '/index(.format)' => redirect('/')
    end
    
 end
