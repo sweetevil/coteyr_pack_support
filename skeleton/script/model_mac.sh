@@ -21,5 +21,5 @@ cd "$FIRST"
 
 
 
-coda "$1/app/models/${CHOICE}.rb"
-coda $1/db/migrate/*_create_${CHOICE}s.rb
+subl "$1/app/models/${CHOICE}.rb"
+subl $1/db/migrate/*_create_${CHOICE}s.rb

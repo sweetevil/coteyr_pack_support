@@ -18,4 +18,4 @@ cd $1
 CHOICE=`CocoaDialog inputbox ‑‑informative‑text "Migration Name" --button1 "Ok" | sed 1d`
 rails generate migration $CHOICE
 cd "$FIRST"
-coda $1/db/migrate/*_${CHOICE}.rb
+subl $1/db/migrate/*_${CHOICE}.rb

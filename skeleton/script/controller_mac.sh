@@ -19,5 +19,4 @@ cd "$1"
 CHOICE=`CocoaDialog inputbox ‑‑informative‑text "Controller Name" --button1 "Ok" | sed 1d`
 rails g controller $CHOICE
 cd "$FIRST"
-coda "$1/app/controllers/${CHOICE}_controller.rb"
-coda "$1/app/helpers/${CHOICE}_helper.rb"
+subl "$1/app/controllers/${CHOICE}_controller.rb"
