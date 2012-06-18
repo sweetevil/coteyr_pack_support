@@ -20,7 +20,7 @@ gem 'rmagick', :require => 'RMagick'
 gem 'rcov', :require=>false
 gem 'sass'
 gem "jquery-rails"
-gem 'coteyr_pack', :git=>"git@git.coteyr.net:coteyr_pack.git", :tag=>'rails-3.2.1'
+gem 'coteyr_pack', :git=>"git@git.coteyr.net:coteyr_pack.git"
 
 source 'http://rubygems.org'
 gem 'rails', '3.2.1'
@@ -31,7 +31,6 @@ group :development do
   gem 'autotest-growl'
   gem 'redgreen'
   gem 'autotest-fsevent'
-  gem 'metrical'
 end
 
 group :production, :staging do
