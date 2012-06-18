@@ -24,3 +24,4 @@ config/database.yml
 *.tbz
 *.psd
 .sass-cache/**
+coverage

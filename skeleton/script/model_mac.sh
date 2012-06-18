@@ -23,3 +23,4 @@ cd "$FIRST"
 
 subl "$1/app/models/${CHOICE}.rb"
 subl $1/db/migrate/*_create_${CHOICE}s.rb
+subl $1/test/fabricators/${CHOICE}_fabricator.rb
