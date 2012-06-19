@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
- 
+
 require 'bundler/version'
- 
+
 Gem::Specification.new do |s|
   s.name        = "coteyr_pack"
-  s.version     = "3.3.0"
+  s.version     = "3.2.6"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Robert Cotey"]
   s.email       = ["coteyr@coteyr.net"]

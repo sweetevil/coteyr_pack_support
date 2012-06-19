@@ -20,3 +20,4 @@ CHOICE=`CocoaDialog inputbox ‑‑informative‑text "Controller Name" --button
 rails g controller $CHOICE
 cd "$FIRST"
 subl "$1/app/controllers/${CHOICE}_controller.rb"
+subl "$1/spec/controllers/${CHOICE}_controller_spec.rb"

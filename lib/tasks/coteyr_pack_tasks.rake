@@ -27,6 +27,8 @@ namespace :coteyr_pack do
     FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'spec')], File.join(Rails.root), :verbose => true)
+    FileUtils.rm_r(File.join(Rails.root, 'test'))
 
     puts "Finished."
     puts "========================="
