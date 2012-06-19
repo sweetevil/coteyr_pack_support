@@ -30,7 +30,7 @@ module SemanticFormHelper
 
   def semantic_group(type, field_name, label, fields, options = {})
     help = %Q{<span class="help">#{options[:help]}</span>} if options[:help]
-    to_return = []
+    to_return = ""
     to_return << %Q{<div class="#{type}-fields #{options[:class]}">}
     to_return << %Q{<label for="#{field_name}">#{label}#{help}</label>}
     to_return << %Q{<div class="input">}
@@ -40,14 +40,14 @@ module SemanticFormHelper
   end
 
   def boolean_field_wrapper(input, name, value, text, help = nil)
-    field = []
+    field = ""
     field << %Q{<label>#{input} #{text}</label>}
     field << %Q{<div class="help">#{help}</div>} if help
     field.to_s.html_safe
   end
 
   def check_box_tag_group(name, values, options = {})
-    selections = []
+    selections = ""
     values.each do |item|
       if item.is_a?(Hash)
         value = item[:value]
