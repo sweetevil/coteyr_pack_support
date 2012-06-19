@@ -18,7 +18,7 @@ module SemanticFormHelper
 
   def wrapping(type, field_name, label, field, options = {})
     help = %Q{<span class="help">#{options[:help]}</span>} if options[:help]
-    to_return = []
+    to_return = ""
     to_return << %Q{<div class="#{type}-field #{options[:class]}">}
     to_return << %Q{<label for="#{field_name}">#{label}#{help}</label>} unless ["radio","check", "submit"].include?(type)
     to_return << %Q{<div class="input">}
