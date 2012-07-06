@@ -26,6 +26,7 @@ namespace :coteyr_pack do
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec.ci'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec'), File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.simplecov'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), :verbose => true)
