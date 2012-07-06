@@ -24,11 +24,13 @@ namespace :coteyr_pack do
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'config')], File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec.ci'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec'), File.join(Rails.root), :verbose => true)
     FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), :verbose => true)
     FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'spec')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'lib')], File.join(Rails.root), :verbose => true)
     FileUtils.rm_r(File.join(Rails.root, 'test'))
 
     puts "Finished."

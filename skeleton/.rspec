@@ -1,1 +1,2 @@
---colour --drb
+--profile --colour --drb -f h -o coverage/docs.html -f p -t ~slow
+

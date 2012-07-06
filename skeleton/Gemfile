@@ -20,10 +20,11 @@ gem 'rmagick', :require => 'RMagick'
 gem 'sass'
 gem "jquery-rails"
 gem 'coteyr_pack', :git=>"git@git.coteyr.net:coteyr_pack.git"
-
+gem 'american_date'
 
 source 'http://rubygems.org'
 gem 'rails', '3.2.6'
+
 
 group :development, :test do
   gem 'sqlite3', :require => 'sqlite3'
@@ -35,7 +36,8 @@ group :development, :test do
   gem 'autotest-fsevent'
   gem 'fabrication'
   gem 'rspec-rails'
-  gem 'spork'
+  gem 'spork-rails'
+  gem "shoulda-matchers"
 end
 
 gem 'simplecov', :require => false, :group => :test

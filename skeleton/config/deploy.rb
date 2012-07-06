@@ -19,8 +19,8 @@ require 'bundler/capistrano'
 set :stages, %w(production staging)
 set :default_stage, "production"
 set :git_enable_submodules, true
-require 'config/deploy-settings.rb'
-require 'config/deploy-custom.rb'
+require File.expand_path('../deploy-settings.rb', __FILE__)
+require File.expand_path('../deploy-custom.rb', __FILE__)
 require 'capistrano/ext/multistage'
 default_run_options[:pty] = true
 set :scm, "git"

@@ -1,4 +1,3 @@
-require 'simplecov'
 require 'spork'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
@@ -7,7 +6,12 @@ Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
-
+  unless ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails' do
+      add_filter "/specs"
+    end
+  end
 
 
   # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -41,12 +45,28 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
+    config.treat_symbols_as_metadata_keys_with_true_values = true
+    config.before(:all) do
+      DeferredGarbageCollection.start
+    end
+    config.after(:all) do
+      DeferredGarbageCollection.reconsider
+    end
+    config.before :each do
+      Mail::Message.any_instance.stub(:deliver).and_return true
+    end
   end
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  SimpleCov.start
+  if ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails' do
+      add_filter "/specs/"
+    end
+  end
+  load "#{Rails.root}/db/schema.rb"
 end
 
 # --- Instructions ---
