@@ -38,6 +38,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spork-rails'
   gem "shoulda-matchers"
+  gem 'webrat'
+  gem 'rails-erd'
 end
 
 gem 'simplecov', :require => false, :group => :test
