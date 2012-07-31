@@ -1,1 +1,2 @@
--f h -o coverage/docs.html
+-f h -o coverage/docs.html -f nested
+
