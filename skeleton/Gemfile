@@ -16,10 +16,10 @@
 
 gem 'capistrano'
 gem 'capistrano-ext'
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick', require: 'RMagick'
 gem 'sass'
 gem "jquery-rails"
-gem 'coteyr_pack', :git=>"git@git.coteyr.net:coteyr_pack.git"
+gem 'coteyr_pack', git: "git@git.coteyr.net:coteyr_pack.git"
 gem 'american_date'
 
 source 'http://rubygems.org'
@@ -27,10 +27,10 @@ gem 'rails', '3.2.6'
 
 
 group :development, :test do
-  gem 'sqlite3', :require => 'sqlite3'
+  gem 'sqlite3', require: 'sqlite3'
   gem 'autotest-growl'
   gem 'autotest'
-  gem 'autotest-standalone', :require => 'autotest'
+  gem 'autotest-standalone', require: 'autotest'
   gem 'autotest-rails-pure'
   gem 'ansi'
   gem 'autotest-fsevent'
@@ -42,7 +42,7 @@ group :development, :test do
   gem 'rails-erd'
 end
 
-gem 'simplecov', :require => false, :group => :test
+gem 'simplecov', require: false, group: :test
 
 
 group :production, :staging do

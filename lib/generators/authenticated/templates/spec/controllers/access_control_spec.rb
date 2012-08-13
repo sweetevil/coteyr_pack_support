@@ -7,21 +7,21 @@ include AuthenticatedTestHelper
 # A test controller with and without access controls
 #
 class AccessControlTestController < ApplicationController
-  before_filter :login_required, :only => :login_is_required
+  before_filter :login_required, only: :login_is_required
   def login_is_required
     respond_to do |format|
       @foo = { 'success' => params[:format]||'no fmt given'}
-      format.html do render :text => "success"             end
-      format.xml  do render :xml  => @foo, :status => :ok  end
-      format.json do render :json => @foo, :status => :ok  end
+      format.html do render text: "success"             end
+      format.xml  do render xml:  @foo, status: :ok  end
+      format.json do render json: @foo, status: :ok  end
     end
   end
   def login_not_required
     respond_to do |format|
       @foo = { 'success' => params[:format]||'no fmt given'}
-      format.html do render :text => "success"             end
-      format.xml  do render :xml  => @foo, :status => :ok  end
-      format.json do render :json => @foo, :status => :ok  end
+      format.html do render text: "success"             end
+      format.xml  do render xml:  @foo, status: :ok  end
+      format.json do render json: @foo, status: :ok  end
     end
   end
 end
@@ -45,8 +45,8 @@ describe AccessControlTestController do
   fixtures        :<%= table_name %>
   before do
     # is there a better way to do this?
-    ActionController::Routing::Routes.add_route '/login_is_required',           :controller => 'access_control_test',   :action => 'login_is_required'
-    ActionController::Routing::Routes.add_route '/login_not_required',          :controller => 'access_control_test',   :action => 'login_not_required'
+    ActionController::Routing::Routes.add_route '/login_is_required',           controller: 'access_control_test',   action: 'login_is_required'
+    ActionController::Routing::Routes.add_route '/login_not_required',          controller: 'access_control_test',   action: 'login_not_required'
   end
 
   ACCESS_CONTROL_FORMATS.each do |format, success_text|
@@ -56,7 +56,7 @@ describe AccessControlTestController do
           before do
             logout_keeping_session!
             @<%= file_name %> = format.blank? ? login_as(<%= file_name %>_login) : authorize_as(<%= file_name %>_login)
-            get login_reqd_status.to_s, :format => format
+            get login_reqd_status.to_s, format: format
           end
 
           if ((login_reqd_status == :login_not_required) ||

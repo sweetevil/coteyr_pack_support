@@ -28,39 +28,39 @@ class <%= class_name %>Test < ActiveSupport::TestCase
 <% end %>
   def test_should_require_login
     assert_no_difference '<%= class_name %>.count' do
-      u = create_<%= file_name %>(:login => nil)
+      u = create_<%= file_name %>(login: nil)
       assert u.errors.on(:login)
     end
   end
 
   def test_should_require_password
     assert_no_difference '<%= class_name %>.count' do
-      u = create_<%= file_name %>(:password => nil)
+      u = create_<%= file_name %>(password: nil)
       assert u.errors.on(:password)
     end
   end
 
   def test_should_require_password_confirmation
     assert_no_difference '<%= class_name %>.count' do
-      u = create_<%= file_name %>(:password_confirmation => nil)
+      u = create_<%= file_name %>(password_confirmation: nil)
       assert u.errors.on(:password_confirmation)
     end
   end
 
   def test_should_require_email
     assert_no_difference '<%= class_name %>.count' do
-      u = create_<%= file_name %>(:email => nil)
+      u = create_<%= file_name %>(email: nil)
       assert u.errors.on(:email)
     end
   end
 
   def test_should_reset_password
-    <%= table_name %>(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    <%= table_name %>(:quentin).update_attributes(password: 'new password', password_confirmation: 'new password')
     assert_equal <%= table_name %>(:quentin), <%= class_name %>.authenticate('quentin', 'new password')
   end
 
   def test_should_not_rehash_password
-    <%= table_name %>(:quentin).update_attributes(:login => 'quentin2')
+    <%= table_name %>(:quentin).update_attributes(login: 'quentin2')
     assert_equal <%= table_name %>(:quentin), <%= class_name %>.authenticate('quentin2', 'monkey')
   end
 
@@ -108,9 +108,9 @@ class <%= class_name %>Test < ActiveSupport::TestCase
   end
 <% if options[:stateful] %>
   def test_should_register_passive_<%= file_name %>
-    <%= file_name %> = create_<%= file_name %>(:password => nil, :password_confirmation => nil)
+    <%= file_name %> = create_<%= file_name %>(password: nil, password_confirmation: nil)
     assert <%= file_name %>.passive?
-    <%= file_name %>.update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    <%= file_name %>.update_attributes(password: 'new password', password_confirmation: 'new password')
     <%= file_name %>.register!
     assert <%= file_name %>.pending?
   end
@@ -134,7 +134,7 @@ class <%= class_name %>Test < ActiveSupport::TestCase
 
   def test_should_unsuspend_<%= file_name %>_with_nil_activation_code_and_activated_at_to_passive_state
     <%= table_name %>(:quentin).suspend!
-    <%= class_name %>.update_all :activation_code => nil, :activated_at => nil
+    <%= class_name %>.update_all activation_code: nil, activated_at: nil
     assert <%= table_name %>(:quentin).suspended?
     <%= table_name %>(:quentin).reload.unsuspend!
     assert <%= table_name %>(:quentin).passive?
@@ -142,7 +142,7 @@ class <%= class_name %>Test < ActiveSupport::TestCase
 
   def test_should_unsuspend_<%= file_name %>_with_activation_code_and_nil_activated_at_to_pending_state
     <%= table_name %>(:quentin).suspend!
-    <%= class_name %>.update_all :activation_code => 'foo-bar', :activated_at => nil
+    <%= class_name %>.update_all activation_code: 'foo-bar', activated_at: nil
     assert <%= table_name %>(:quentin).suspended?
     <%= table_name %>(:quentin).reload.unsuspend!
     assert <%= table_name %>(:quentin).pending?
@@ -157,7 +157,7 @@ class <%= class_name %>Test < ActiveSupport::TestCase
 <% end %>
 protected
   def create_<%= file_name %>(options = {})
-    record = <%= class_name %>.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = <%= class_name %>.new({ login: 'quire', email: 'quire@example.com', password: 'quire69', password_confirmation: 'quire69' }.merge(options))
     record.<% if options[:stateful] %>register! if record.valid?<% else %>save<% end %>
     record
   end

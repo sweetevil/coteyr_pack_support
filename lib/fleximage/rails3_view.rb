@@ -21,7 +21,7 @@ module Fleximage
 
     class TemplateDidNotReturnImage < RuntimeError #:nodoc:
     end
-    
+
     def self.call(template)
       self.new.compile(template)
     end
@@ -29,7 +29,7 @@ module Fleximage
     def compile(template)
       <<-CODE
       @template_format = :flexi
-      controller.response.content_type ||= Mime::JPG    
+      controller.response.content_type ||= Mime::JPG
       result = #{template.source}
       requested_format = (params[:format] || :jpg).to_sym
       begin
@@ -39,7 +39,7 @@ module Fleximage
         end
         # Figure out the proper format
         raise 'Image must be requested with an image type format.  jpg, gif and png only are supported.' unless [:jpg, :gif, :png].include?(requested_format)
-        result.output_image(:format => requested_format)
+        result.output_image(format: requested_format)
       rescue Exception => e
         e
       end

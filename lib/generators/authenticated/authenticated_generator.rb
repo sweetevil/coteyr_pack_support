@@ -4,21 +4,21 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
 
   include Rails::Generators::Migration
 
-  argument :controller_name,          :type => :string, :default => 'sessions', :banner => 'ControllerName'
+  argument :controller_name,          type: :string, default: 'sessions', banner: 'ControllerName'
 
-  class_option :skip_routes,          :type => :boolean, :desc => "Don't generate a resource line in config/routes.rb."
-  class_option :skip_migration,       :type => :boolean, :desc => "Don't generate a migration file for this model."
-  class_option :aasm,                 :type => :boolean, :desc => "Works the same as stateful but uses the updated aasm gem"
-  class_option :stateful,             :type => :boolean, :desc => "Builds in support for acts_as_state_machine and generatesactivation code."
-  class_option :rspec,                :type => :boolean, :desc => "Generate RSpec tests and Stories in place of standard rails tests."
-  class_option :old_passwords,        :type => :boolean, :desc => "Use the older password scheme"
-  class_option :include_activation,   :type => :boolean, :desc => "Skip the code for a ActionMailer and its respective Activation Code through email"
-  class_option :dump_generator_attrs, :type => :boolean, :desc => "Dump Generator Attrs"
+  class_option :skip_routes,          type: :boolean, desc: "Don't generate a resource line in config/routes.rb."
+  class_option :skip_migration,       type: :boolean, desc: "Don't generate a migration file for this model."
+  class_option :aasm,                 type: :boolean, desc: "Works the same as stateful but uses the updated aasm gem"
+  class_option :stateful,             type: :boolean, desc: "Builds in support for acts_as_state_machine and generatesactivation code."
+  class_option :rspec,                type: :boolean, desc: "Generate RSpec tests and Stories in place of standard rails tests."
+  class_option :old_passwords,        type: :boolean, desc: "Use the older password scheme"
+  class_option :include_activation,   type: :boolean, desc: "Skip the code for a ActionMailer and its respective Activation Code through email"
+  class_option :dump_generator_attrs, type: :boolean, desc: "Dump Generator Attrs"
 
   def self.source_root
     @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
   end
-  
+
   def initialize(*args, &block)
     super
     controller_base_name
@@ -69,7 +69,7 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
       # RSpec Specs
       template 'spec/controllers/users_controller_spec.rb', File.join('spec/controllers', model_controller_class_path, "#{ model_controller_file_name }_controller_spec.rb")
       template 'spec/controllers/sessions_controller_spec.rb', File.join('spec/controllers', controller_class_path, "#{ controller_file_name }_controller_spec.rb")
-      template 'spec/controllers/access_control_spec.rb', File.join('spec/controllers', controller_class_path, "access_control_spec.rb") 
+      template 'spec/controllers/access_control_spec.rb', File.join('spec/controllers', controller_class_path, "access_control_spec.rb")
       template 'spec/controllers/authenticated_system_spec.rb', File.join('spec/controllers', controller_class_path, "authenticated_system_spec.rb")
       template 'spec/helpers/users_helper_spec.rb', File.join('spec/helpers', model_controller_class_path, "#{ table_name }_helper_spec.rb")
       template 'spec/models/user_spec.rb', File.join('spec/models' , class_path, "#{ file_name }_spec.rb")
@@ -88,7 +88,7 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
     else
       template 'test/functional_test.rb', File.join('test/functional', controller_class_path, "#{ controller_file_name }_controller_test.rb")
       template 'test/model_functional_test.rb', File.join('test/functional', model_controller_class_path, "#{ model_controller_file_name }_controller_test.rb")
-      template 'test/unit_test.rb', File.join('test/unit', class_path, "#{ file_name }_test.rb") 
+      template 'test/unit_test.rb', File.join('test/unit', class_path, "#{ file_name }_test.rb")
       if options.include_activation?
         template 'test/mailer_test.rb', File.join('test/functional', class_path, "#{ file_name }_mailer_test.rb")
       end
@@ -126,12 +126,12 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
   def create_routes
     unless options.skip_routes?
       # Note that this fails for nested classes -- you're on your own with setting up the routes.
-      route "match '/activate/:activation_code' => '#{ model_controller_plural_name }#activate', :as => :activate, :activation_code => nil"
-      route "match 'logout' => '#{ controller_controller_name }#destroy', :as => :logout"
-      route "match 'login' => '#{ controller_controller_name }#new', :as => :login"
-      route "match 'register' => '#{ model_controller_plural_name }#create', :as => :register"
-      route "match 'signup' => '#{ model_controller_plural_name }#new', :as => :signup"
-      route "resource #{ controller_singular_name.to_sym.inspect }, :only => [:new, :create, :destroy]"
+      route "match '/activate/:activation_code' => '#{ model_controller_plural_name }#activate', as: :activate, activation_code: nil"
+      route "match 'logout' => '#{ controller_controller_name }#destroy', as: :logout"
+      route "match 'login' => '#{ controller_controller_name }#new', as: :login"
+      route "match 'register' => '#{ model_controller_plural_name }#create', as: :register"
+      route "match 'signup' => '#{ model_controller_plural_name }#new', as: :signup"
+      route "resource #{ controller_singular_name.to_sym.inspect }, only: [:new, :create, :destroy]"
       route "resources #{ model_controller_plural_name.to_sym.inspect }"
     end
   end
@@ -159,11 +159,11 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
         puts "    svn export http://elitists.textdriven.com/svn/plugins/acts_as_state_machine/trunk vendor/plugins/acts_as_state_machine"
       end
       puts "- Add routes to these resources. In config/routes.rb, insert routes like:"
-      puts %(    match 'login' => '#{ controller_file_name }#new', :as => :login)
-      puts %(    match 'logout' => '#{ controller_file_name }#destroy', :as => :logout)
-      puts %(    match 'signup' => '#{ model_controller_file_name }#new', :as => :signup)
+      puts %(    match 'login' => '#{ controller_file_name }#new', as: :login)
+      puts %(    match 'logout' => '#{ controller_file_name }#destroy', as: :logout)
+      puts %(    match 'signup' => '#{ model_controller_file_name }#new', as: :signup)
       if options.include_activation?
-        puts %(    match 'activate/:activation_code' => '#{ model_controller_file_name }#activate', :as => :activate, :activation_code => nil)
+        puts %(    match 'activate/:activation_code' => '#{ model_controller_file_name }#activate', as: :activate, activation_code: nil)
       end
       if options.stateful?
         puts  "  and modify the resources :#{ model_controller_file_name } line to include these actions:"
@@ -316,10 +316,10 @@ class AuthenticatedGenerator <  Rails::Generators::NamedBase
   def model_controller_controller_name # users
     model_controller_plural_name
   end
-  
+
   alias_method  :model_controller_file_name,  :model_controller_singular_name
   alias_method  :model_controller_table_name, :model_controller_plural_name
-  
+
   private
 
   def controller_base_name

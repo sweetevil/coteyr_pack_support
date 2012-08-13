@@ -8,7 +8,7 @@ module RequestLogAnalyzer::Tracker
   # * <tt>:output</tt> Direct output here (defaults to STDOUT)
   # * <tt>:unless</tt> Proc that has to return nil for a request to be passed to the tracker.
   #
-  # For example :if => lambda { |request| request[:duration] && request[:duration] > 1.0 }
+  # For example if: lambda { |request| request[:duration] && request[:duration] > 1.0 }
   class Base
 
     attr_reader :options
@@ -35,8 +35,8 @@ module RequestLogAnalyzer::Tracker
       @should_update_checks.push( lambda { |request| !options[:unless].call(request) }) if options[:unless].respond_to?(:call)
       @should_update_checks.push( lambda { |request| !request[options[:unless]] }) if options[:unless].kind_of?(Symbol)
     end
-    
-    # Creates a lambda expression to return a static field from a request. If the 
+
+    # Creates a lambda expression to return a static field from a request. If the
     # argument already is a lambda exprssion, it will simply return the argument.
     def create_lambda(arg)
       case arg

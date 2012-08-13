@@ -18,5 +18,5 @@ set(:deploy_to) {"/home/#{user}/web/#{application}-code"}
 set(:public_path) {"/home/#{user}/web/#{domain}"}
 #Servers
 server domain, :app, :web
-role :db, domain, :primary => true
+role :db, domain, primary: true
 role :task_server, domain

@@ -11,19 +11,19 @@ class <%= class_name %> < ActiveRecord::Base
 <% unless options.skip_migration? -%>
   set_table_name '<%= table_name %>'<% end %>
 
-  validates :login, :presence   => true,
-                    :uniqueness => true,
-                    :length     => { :within => 3..40 },
-                    :format     => { :with => Authentication.login_regex, :message => Authentication.bad_login_message }
+  validates :login, presence:   true,
+                    uniqueness: true,
+                    length:     { within: 3..40 },
+                    format:     { with: Authentication.login_regex, message: Authentication.bad_login_message }
 
-  validates :name,  :format     => { :with => Authentication.name_regex, :message => Authentication.bad_name_message },
-                    :length     => { :maximum => 100 },
-                    :allow_nil  => true
+  validates :name,  format:     { with: Authentication.name_regex, message: Authentication.bad_name_message },
+                    length:     { maximum: 100 },
+                    allow_nil:  true
 
-  validates :email, :presence   => true,
-                    :uniqueness => true,
-                    :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message },
-                    :length     => { :within => 6..100 }
+  validates :email, presence:   true,
+                    uniqueness: true,
+                    format:     { with: Authentication.email_regex, message: Authentication.bad_email_message },
+                    length:     { within: 6..100 }
 
   <% if options.include_activation? && !options.stateful? %>before_create :make_activation_code <% end %>
 
@@ -38,7 +38,7 @@ class <%= class_name %> < ActiveRecord::Base
     @activated = true
     self.activated_at = Time.now.utc
     self.activation_code = nil
-    save(:validate => false)
+    save(validate: false)
   end
 
   # Returns true if the user has just been activated.
@@ -53,13 +53,13 @@ class <%= class_name %> < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
-  # uff.  this is really an authorization, not authentication routine.  
+  # uff.  this is really an authorization, not authentication routine.
   # We really need a Dispatch Chain here or something.
   # This will also let us return a human error message.
   #
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
-    u = <% if options.stateful? %>find_in_state :first, :active, :conditions => {:login => login.downcase}<%
+    u = <% if options.stateful? %>find_in_state :first, :active, conditions: {login: login.downcase}<%
            elsif options.include_activation? %>where(['login = ? and activated_at IS NOT NULL', login]).first<%
            else %>find_by_login(login.downcase)<% end %> # need to get the salt
     u && u.authenticated?(password) ? u : nil
@@ -74,7 +74,7 @@ class <%= class_name %> < ActiveRecord::Base
   end
 
   protected
-    
+
 <% if options.include_activation? -%>
   def make_activation_code
   <% if options.stateful? -%>

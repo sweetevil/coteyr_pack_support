@@ -101,7 +101,7 @@ end
 
 def create_user(user_params={})
   @user_params       ||= user_params
-  post "/users", :user => user_params
+  post "/users", user: user_params
   @user = User.find_by_login(user_params['login'])
 end
 

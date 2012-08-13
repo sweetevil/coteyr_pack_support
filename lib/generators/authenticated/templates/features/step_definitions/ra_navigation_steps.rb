@@ -35,7 +35,7 @@ end
 
 # DELETE -- Slap together the POST-form-as-fake-HTTP-DELETE submission
 When %r{$actor asks to delete '$resource'} do |_, resource|
-  post "/#{resource.downcase.pluralize}", { :_method => :delete }
+  post "/#{resource.downcase.pluralize}", { _method: :delete }
   dump_response
 end
 

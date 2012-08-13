@@ -15,8 +15,8 @@ module RequestLogAnalyzer::Output
     # Colorize module
     module Color
 
-      STYLES = { :normal => 0, :bold => 1, :underscore => 4, :blink => 5, :inverse => 7, :concealed => 8 }
-      COLORS = { :black  => 0, :blue => 4, :green => 2, :cyan => 6, :red => 1, :purple => 5, :brown => 3, :white => 7 }
+      STYLES = { normal: 0, bold: 1, underscore: 4, blink: 5, inverse: 7, concealed: 8 }
+      COLORS = { black:  0, blue: 4, green: 2, cyan: 6, red: 1, purple: 5, brown: 3, white: 7 }
 
       # Colorize text
       # <tt>text</tt> The text to colorize
@@ -56,8 +56,8 @@ module RequestLogAnalyzer::Output
     attr_reader :characters
 
     CHARACTERS = {
-      :ascii => { :horizontal_line => '-', :vertical_line => '|', :block => '=' },
-      :utf   => { :horizontal_line => '━', :vertical_line => '┃', :block => '░' }
+      ascii: { horizontal_line: '-', vertical_line: '|', block: '=' },
+      utf:   { horizontal_line: '━', vertical_line: '┃', block: '░' }
     }
 
     # Initialize a report

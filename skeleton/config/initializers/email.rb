@@ -19,10 +19,10 @@
 #sample gmail config from the net
 #ActionMailer::Base.delivery_method = :smtp
 #ActionMailer::Base.smtp_settings = {
-#   :address => "smtp.gmail.com",
-#   :port => 587,
-#   :domain => "some.domain",
-#   :authentication => :plain,
-#   :user_name => "someuser@domain.com",  # make sure to put "@gmail.com" here, not just your username
-#   :password => "password", #this is public
-#   :enable_starttls_auto => true }
+#   address: "smtp.gmail.com",
+#   port: 587,
+#   domain: "some.domain",
+#   authentication: :plain,
+#   user_name: "someuser@domain.com",  # make sure to put "@gmail.com" here, not just your username
+#   password: "password", #this is public
+#   enable_starttls_auto: true }

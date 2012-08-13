@@ -28,10 +28,10 @@ module RequestLogAnalyzer::Tracker
     def prepare
       options[:category] = options[:value] if options[:value] && !options[:category]
       raise "No categorizer set up for category tracker #{self.inspect}" unless options[:category]
-      
+
       @categorizer = create_lambda(options[:category]) unless options[:multiple]
-      
-      # Initialize the categories. Use the list of category names to 
+
+      # Initialize the categories. Use the list of category names to
       @categories = {}
       options[:all_categories].each { |cat| @categories[cat] = 0 } if options[:all_categories].kind_of?(Enumerable)
     end
@@ -45,9 +45,9 @@ module RequestLogAnalyzer::Tracker
           if cat || options[:nils]
             @categories[cat] ||= 0
             @categories[cat] += 1
-          end          
+          end
         end
-        
+
       else
         cat = @categorizer.call(request)
         if cat || options[:nils]
@@ -85,7 +85,7 @@ module RequestLogAnalyzer::Tracker
         sorted_categories = output.slice_results(sorted_by_frequency)
         total_hits        = overall_frequency
 
-        output.table({:align => :left}, {:align => :right }, {:align => :right}, {:type => :ratio, :width => :rest}) do |rows|
+        output.table({align: :left}, {align: :right }, {align: :right}, {type: :ratio, width: :rest}) do |rows|
           sorted_categories.each do |(cat, count)|
             rows << [cat, "#{count} hits", '%0.1f%%' % ((count.to_f / total_hits.to_f) * 100.0), (count.to_f / total_hits.to_f)]
           end

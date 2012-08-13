@@ -68,7 +68,7 @@ module RequestLogAnalyzer::Tracker
     def timespan
       last_timestamp - first_timestamp
     end
-    
+
     # Generate an hourly spread report to the given output object.
     # Any options for the report should have been set during initialize.
     # <tt>output</tt> The output object
@@ -81,7 +81,7 @@ module RequestLogAnalyzer::Tracker
       end
 
       days = [1, timespan].max
-      output.table({}, {:align => :right}, {:type => :ratio, :width => :rest, :treshold => 0.15}) do |rows|
+      output.table({}, {align: :right}, {type: :ratio, width: :rest, treshold: 0.15}) do |rows|
         @hour_frequencies.each_with_index do |requests, index|
           ratio            = requests.to_f / total_requests.to_f
           requests_per_day = (requests / days).ceil

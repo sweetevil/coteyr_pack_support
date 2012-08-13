@@ -65,7 +65,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
   def time_zone_select(method, choices, options = {}, html_options = {})
     field_name, label, options = field_settings(method, options)
     # wrapping("time-zone-select", field_name, label, super, options)
-    select_box = this_check_box = @template.select(@object_name, method, choices, options.merge(:object => @object), html_options)
+    select_box = this_check_box = @template.select(@object_name, method, choices, options.merge(object: @object), html_options)
     wrapping("time-zone-select", field_name, label, select_box, options)
   end
 
@@ -80,7 +80,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def submit(method, options = {})
-    field_name, label, options = field_settings(method, options.merge( :label => "&nbsp;"))
+    field_name, label, options = field_settings(method, options.merge( label: "&nbsp;"))
     wrapping("submit", field_name, label, super, options)
   end
 
@@ -101,7 +101,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
         tag_value = value
         value_text = value
       end
-      radio_button = @template.radio_button(@object_name, method, tag_value, options.merge(:object => @object, :help => help))
+      radio_button = @template.radio_button(@object_name, method, tag_value, options.merge(object: @object, help: help))
       selections << boolean_field_wrapper(
                         radio_button, "#{@object_name}_#{method.to_s}",
                         tag_value, value_text)
@@ -124,7 +124,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
         unchecked_value = 0
         value_text = value
       end
-      check_box = @template.check_box(@object_name, method, options.merge(:object => @object), checked_value, unchecked_value)
+      check_box = @template.check_box(@object_name, method, options.merge(object: @object), checked_value, unchecked_value)
       selections << boolean_field_wrapper(
                         check_box, "#{@object_name}_#{method.to_s}",
                         checked_value, value_text)

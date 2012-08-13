@@ -27,9 +27,9 @@ From
   * also: http://agilewebdevelopment.com/plugins/acl_system2_ownership
 
   bq. access_control [:new, :create, :update, :edit] => '(admin | user |
-                      moderator)', :delete => 'admin'
+                      moderator)', delete: 'admin'
       <% restrict_to "(admin | moderator) & !blacklist" do %>
-        <%= link_to "Admin & Moderator only link", :action =>'foo' %>
+        <%= link_to "Admin & Moderator only link", action: 'foo' %>
       <% end %>
 
 * Authorization Recipe (from Rails Recipes #32)

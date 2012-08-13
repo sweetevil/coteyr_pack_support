@@ -14,7 +14,7 @@
    #    You should have received a copy of the GNU General Public License
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
-<%= "\<\%\= render :partial=>'#{underscore_name.singularize}', :collection=>@#{underscore_name} \%\>" %>
+<%= "\<\%\= render partial: '#{underscore_name.singularize}', collection: @#{underscore_name} \%\>" %>
 <div class="center">
   <%= "\<\%\= link_to 'add new', new_#{underscore_name.singularize}_path \%\>" %>
 </div>

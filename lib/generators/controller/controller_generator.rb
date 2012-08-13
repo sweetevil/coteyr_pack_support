@@ -1,6 +1,6 @@
 class ControllerGenerator < Rails::Generators::NamedBase
-  argument :actions, :type => :array, :default => [], :banner => "action action"
-  check_class_collision :suffix => "Controller"
+  argument :actions, type: :array, default: [], banner: "action action"
+  check_class_collision suffix: "Controller"
   attr_accessor :models_name, :model_name, :controller_name, :underscore_name
 
   def generate_layout

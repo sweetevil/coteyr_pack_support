@@ -19,8 +19,8 @@ module Restful
         instance_variable_set("@#{@klass.name.underscore.downcase.pluralize}", objs)
         respond_to do |format|
             format.html
-            format.xml {render :xml=>objs}
-            format.json {render :json=>objs.to_json}
+            format.xml {render xml: objs}
+            format.json {render json: objs.to_json}
             format.js {}
         end
     end
@@ -29,8 +29,8 @@ module Restful
         instance_variable_set("@#{@klass.name.underscore.downcase}", obj) if !instance_variable_get("@#{@klass.name.underscore.downcase}")
         respond_to do |format|
             format.html
-            format.xml {render :xml=>obj.to_xml}
-            format.json {render :json=>obj.to_json}
+            format.xml {render xml: obj.to_xml}
+            format.json {render json: obj.to_json}
 
         end
     end
@@ -41,19 +41,19 @@ module Restful
         respond_to do |format|
             format.html {
               if worked
-                redirect_to :action=>:index
+                redirect_to action: :index
               else
-                render :action=>:new
+                render action: :new
               end
             }
 
-            format.xml {render :xml=>obj, :status => :created, :location=>obj}
+            format.xml {render xml: obj, status: :created, location: obj}
             format.json {
               if worked
                 objs = eval(@skope).find(:all)
                 instance_variable_set("@#{@klass.name.underscore.downcase.pluralize}", objs)
               else
-                render :action=>:new
+                render action: :new
               end
             }
         end
@@ -63,8 +63,8 @@ module Restful
         instance_variable_set("@#{@klass.name.underscore.downcase}", obj)
         respond_to do |format|
             format.html
-            format.xml {render :xml=>obj.to_xml}
-            format.json {render :json=>obj.to_json}
+            format.xml {render xml: obj.to_xml}
+            format.json {render json: obj.to_json}
             format.js {}
         end
     end
@@ -74,18 +74,18 @@ module Restful
         respond_to do |format|
             format.html{
               if worked
-                redirect_to :action=>:index
+                redirect_to action: :index
               else
                 session[:temp] = obj
                 redirect_to edit_polymorphic_path(obj)
               end
             }
-            format.xml{render :xml=>obj, :status =>200, :location=>obj}
+            format.xml{render xml: obj, status: 200, location: obj}
             format.json {
               if worked
-                render :json=>obj
+                render json: obj
               else
-                render :json=>obj, :status=>500
+                render json: obj, status: 500
               end
             }
 
@@ -95,7 +95,7 @@ module Restful
         obj = @klass.find params[:id]
         obj.destroy
         respond_to do |format|
-            format.html {redirect_to :action=>:index}
+            format.html {redirect_to action: :index}
             format.xml {head :ok}
             format.json {head :ok}
             format.js{
@@ -113,7 +113,7 @@ module Restful
         instance_variable_set("@#{@klass.name.underscore.downcase}", obj) if !instance_variable_get("@#{@klass.name.underscore.downcase}")
         respond_to do |format|
             format.html
-            format.xml {render :xml=>obj.to_xml}
+            format.xml {render xml: obj.to_xml}
         end
     end
     def create_or_edit(cls, param, redirect=nil)

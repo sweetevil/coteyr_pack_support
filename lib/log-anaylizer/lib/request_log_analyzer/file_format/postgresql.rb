@@ -4,17 +4,17 @@ module RequestLogAnalyzer::FileFormat
   class Postgresql < Base
 
     extend CommonRegularExpressions
-    
+
     line_definition :query do |line|
       line.header = true
       line.teaser = /.*LOG\:/
       line.regexp = /(#{timestamp('%Y-%m-%d %k:%M:%S')})\ \S+ \[\d+\]\:\ \[.*\]\ LOG\:\ \ \d+\:\ duration\: (.*)\ ms\ \ statement:\ (.*)/
 
       line.capture(:timestamp).as(:timestamp)
-      line.capture(:query_time).as(:duration, :unit => :sec)
+      line.capture(:query_time).as(:duration, unit: :sec)
       line.capture(:query_fragment)
     end
-      
+
     line_definition :location do |line|
       line.footer = true
       line.teaser = /.*LOCATION:/
@@ -22,7 +22,7 @@ module RequestLogAnalyzer::FileFormat
 
       line.capture(:query).as(:sql) # Hack to gather up fragments
     end
-    
+
     line_definition :query_fragment do |line|
       line.regexp = /^(?!.*LOG)\s*(.*)\s*/
       line.capture(:query_fragment)
@@ -30,14 +30,14 @@ module RequestLogAnalyzer::FileFormat
 
     report do |analyze|
       analyze.timespan
-      analyze.hourly_spread      
-      analyze.duration :query_time, :category => :query, :title => 'Query time'
+      analyze.hourly_spread
+      analyze.duration :query_time, category: :query, title: 'Query time'
     end
-  
+
     class Request < RequestLogAnalyzer::Request
 
       def convert_sql(value, definition)
-        
+
         # Recreate the full SQL query by joining all the previous parts and this last line
         sql = every(:query_fragment).join("\n") + value
 

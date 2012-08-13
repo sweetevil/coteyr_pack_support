@@ -15,8 +15,8 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 
 APPLICATION_NAME_HERE::Application.config.middleware.use ExceptionNotifier,
-    :email_prefix => "[EXCEPTION][APP NAME] ",
-    :project_name => "Project",
-    :project_tracker => "Exceptions",
-    :sender_address => %{"notifier" <notifier@example.com>},
-    :exception_recipients => %w{exceptions@example.com}
+    email_prefix: "[EXCEPTION][APP NAME] ",
+    project_name: "Project",
+    project_tracker: "Exceptions",
+    sender_address: %{"notifier" <notifier@example.com>},
+    exception_recipients: %w{exceptions@example.com}

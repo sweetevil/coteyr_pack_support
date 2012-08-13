@@ -7,8 +7,8 @@ describe <%= model_controller_class_name %>Helper do
   before do
     @<%= file_name %> = mock_<%= file_name %>
   end
-  
-  describe "if_authorized" do 
+
+  describe "if_authorized" do
     it "yields if authorized" do
       should_receive(:authorized?).with('a','r').and_return(true)
       if_authorized?('a','r'){|action,resource| [action,resource,'hi'] }.should == ['a','r','hi']
@@ -18,7 +18,7 @@ describe <%= model_controller_class_name %>Helper do
       if_authorized?('a','r'){ 'hi' }.should be_nil
     end
   end
-  
+
   describe "link_to_<%= file_name %>" do
     it "should give an error on a nil <%= file_name %>" do
       lambda { link_to_<%= file_name %>(nil) }.should raise_error('Invalid <%= file_name %>')
@@ -28,25 +28,25 @@ describe <%= model_controller_class_name %>Helper do
       link_to_<%= file_name %>(@<%= file_name %>).should have_tag("a[href='/<%= model_controller_file_path %>/1']")
     end
     it "should use given link text if :content_text is specified" do
-      link_to_<%= file_name %>(@<%= file_name %>, :content_text => 'Hello there!').should have_tag("a", 'Hello there!')
+      link_to_<%= file_name %>(@<%= file_name %>, content_text: 'Hello there!').should have_tag("a", 'Hello there!')
     end
     it "should use the login as link text with no :content_method specified" do
       link_to_<%= file_name %>(@<%= file_name %>).should have_tag("a", 'user_name')
     end
-    it "should use the name as link text with :content_method => :name" do
-      link_to_<%= file_name %>(@<%= file_name %>, :content_method => :name).should have_tag("a", 'U. Surname')
+    it "should use the name as link text with content_method: :name" do
+      link_to_<%= file_name %>(@<%= file_name %>, content_method: :name).should have_tag("a", 'U. Surname')
     end
     it "should use the login as title with no :title_method specified" do
       link_to_<%= file_name %>(@<%= file_name %>).should have_tag("a[title='user_name']")
     end
-    it "should use the name as link title with :content_method => :name" do
-      link_to_<%= file_name %>(@<%= file_name %>, :title_method => :name).should have_tag("a[title='U. Surname']")
+    it "should use the name as link title with content_method: :name" do
+      link_to_<%= file_name %>(@<%= file_name %>, title_method: :name).should have_tag("a[title='U. Surname']")
     end
     it "should have nickname as a class by default" do
       link_to_<%= file_name %>(@<%= file_name %>).should have_tag("a.nickname")
     end
     it "should take other classes and no longer have the nickname class" do
-      result = link_to_<%= file_name %>(@<%= file_name %>, :class => 'foo bar')
+      result = link_to_<%= file_name %>(@<%= file_name %>, class: 'foo bar')
       result.should have_tag("a.foo")
       result.should have_tag("a.bar")
     end
@@ -69,12 +69,12 @@ describe <%= model_controller_class_name %>Helper do
       link_to_login_with_IP().should_not have_tag("a.nickname")
     end
     it "should have some class if you tell it to" do
-      result = link_to_login_with_IP(nil, :class => 'foo bar')
+      result = link_to_login_with_IP(nil, class: 'foo bar')
       result.should have_tag("a.foo")
       result.should have_tag("a.bar")
     end
     it "should have some class if you tell it to" do
-      result = link_to_login_with_IP(nil, :tag => 'abbr')
+      result = link_to_login_with_IP(nil, tag: 'abbr')
       result.should have_tag("abbr[title='0.0.0.0']")
     end
   end
@@ -88,25 +88,25 @@ describe <%= model_controller_class_name %>Helper do
       link_to_current_<%= file_name %>().should have_tag("a[href='/<%= model_controller_file_path %>/1']")
     end
     it "should use given link text if :content_text is specified" do
-      link_to_current_<%= file_name %>(:content_text => 'Hello there!').should have_tag("a", 'Hello there!')
+      link_to_current_<%= file_name %>(content_text: 'Hello there!').should have_tag("a", 'Hello there!')
     end
     it "should use the login as link text with no :content_method specified" do
       link_to_current_<%= file_name %>().should have_tag("a", 'user_name')
     end
-    it "should use the name as link text with :content_method => :name" do
-      link_to_current_<%= file_name %>(:content_method => :name).should have_tag("a", 'U. Surname')
+    it "should use the name as link text with content_method: :name" do
+      link_to_current_<%= file_name %>(content_method: :name).should have_tag("a", 'U. Surname')
     end
     it "should use the login as title with no :title_method specified" do
       link_to_current_<%= file_name %>().should have_tag("a[title='user_name']")
     end
-    it "should use the name as link title with :content_method => :name" do
-      link_to_current_<%= file_name %>(:title_method => :name).should have_tag("a[title='U. Surname']")
+    it "should use the name as link title with content_method: :name" do
+      link_to_current_<%= file_name %>(title_method: :name).should have_tag("a[title='U. Surname']")
     end
     it "should have nickname as a class" do
       link_to_current_<%= file_name %>().should have_tag("a.nickname")
     end
     it "should take other classes and no longer have the nickname class" do
-      result = link_to_current_<%= file_name %>(:class => 'foo bar')
+      result = link_to_current_<%= file_name %>(class: 'foo bar')
       result.should have_tag("a.foo")
       result.should have_tag("a.bar")
     end
@@ -120,7 +120,7 @@ describe <%= model_controller_class_name %>Helper do
       link_to_current_<%= file_name %>().should have_tag("a[href='/login']")
     end
     it "should use given link text if :content_text is specified" do
-      link_to_current_<%= file_name %>(:content_text => 'Hello there!').should have_tag("a", 'Hello there!')
+      link_to_current_<%= file_name %>(content_text: 'Hello there!').should have_tag("a", 'Hello there!')
     end
     it "should use 'not signed in' as link text with no :content_method specified" do
       link_to_current_<%= file_name %>().should have_tag("a", 'not signed in')
@@ -132,7 +132,7 @@ describe <%= model_controller_class_name %>Helper do
       link_to_current_<%= file_name %>().should_not have_tag("a.nickname")
     end
     it "should have some class if you tell it to" do
-      result = link_to_current_<%= file_name %>(:class => 'foo bar')
+      result = link_to_current_<%= file_name %>(class: 'foo bar')
       result.should have_tag("a.foo")
       result.should have_tag("a.bar")
     end

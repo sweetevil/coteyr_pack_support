@@ -3,7 +3,7 @@ module RequestLogAnalyzer::Output
 
   # Loads a Output::Base subclass instance.
   def self.load(file_format, *args)
-    
+
     klass = nil
     if file_format.kind_of?(RequestLogAnalyzer::Output::Base)
       # this already is a file format! return itself
@@ -36,7 +36,7 @@ module RequestLogAnalyzer::Output
 
     klass.create(*args) # return an instance of the class
   end
-  
+
   # Base Class used for generating output for reports.
   # All output should inherit fromt this class.
   class Base
@@ -49,9 +49,9 @@ module RequestLogAnalyzer::Output
     def initialize(io, options = {})
       @io      = io
       @options = options
-      @style   = options[:style] || { :cell_separator => true, :table_border => false }
+      @style   = options[:style] || { cell_separator: true, table_border: false }
     end
-    
+
     def report_tracker(tracker)
       tracker.report(self)
     end
@@ -92,7 +92,7 @@ module RequestLogAnalyzer::Output
     # === Example
     # The output object should support table definitions:
     #
-    # output.table({:align => :left}, {:align => :right }, {:align => :right}, {:type => :ratio, :width => :rest}) do |rows|
+    # output.table({align: :left}, {align: :right }, {align: :right}, {type: :ratio, width: :rest}) do |rows|
     #   sorted_frequencies.each do |(cat, count)|
     #     rows << [cat, "#{count} hits", '%0.1f%%' % ((count.to_f / total_hits.to_f) * 100.0), (count.to_f / total_hits.to_f)]
     #   end

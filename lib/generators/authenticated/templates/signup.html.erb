@@ -1,9 +1,9 @@
 
 <%% @<%= file_name %>.password = @<%= file_name %>.password_confirmation = nil %>
 
-<%%= render "layouts/error_messages", :target => @<%= file_name %> %>
+<%%= render "layouts/error_messages", target: @<%= file_name %> %>
 <%%= form_title "Sign Up" %>
-<%%= form_for :<%= file_name %>, :url => <%= model_controller_routing_name %>_path do |f| -%>
+<%%= form_for :<%= file_name %>, url: <%= model_controller_routing_name %>_path do |f| -%>
   <%%= field_set_tag 'user information' do %>
     <%%= f.text_field :login %>
     <%%= f.text_field :email %>

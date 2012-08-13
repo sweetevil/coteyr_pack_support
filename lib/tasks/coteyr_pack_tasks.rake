@@ -19,19 +19,19 @@ namespace :coteyr_pack do
   desc "Use this task to install coteyr_pack. Be advised files will be overwritten"
   task :setup do
     plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'public')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'test')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'config')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec.ci'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.simplecov'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'spec')], File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'lib')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'public')], File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'test')], File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'config')], File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec.ci'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rspec'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.simplecov'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'app')], File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'spec')], File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'lib')], File.join(Rails.root), verbose: true)
     FileUtils.rm_r(File.join(Rails.root, 'test'))
 
     puts "Finished."
@@ -46,11 +46,11 @@ namespace :coteyr_pack do
   desc "Update files when updating the gem. Will overwrite some files."
   task :update do
     plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Gemfile'),  ::Rails.root.to_s, :verbose=>true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), :verbose => true)
-    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), :verbose => true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Gemfile'),  ::Rails.root.to_s, verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.gitignore'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', '.rvmrc'), File.join(Rails.root), verbose: true)
+    FileUtils.cp( File.join(plugin_dir, 'skeleton', 'Capfile'), File.join(Rails.root), verbose: true)
+    FileUtils.cp_r( Dir[File.join(plugin_dir, 'skeleton', 'script')], File.join(Rails.root), verbose: true)
 
     puts "Finished."
     puts "========================="
@@ -173,14 +173,14 @@ namespace :coteyr_pack do
   end
   desc "Restart"
   task :restart do
-  	sh("touch #{::Rails.root.to_s}/tmp/restart.txt")
-	end
+    sh("touch #{::Rails.root.to_s}/tmp/restart.txt")
+  end
 
 end
 
 namespace :sass do
   desc 'Updates stylesheets if necessary from their Sass templates.'
-  task :update => :environment do
+  task update: :environment do
     Sass::Plugin.update_stylesheets
   end
 end

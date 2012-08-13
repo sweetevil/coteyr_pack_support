@@ -16,7 +16,7 @@ module RequestLogAnalyzer::Tracker
         @categorizer = create_lambda(options[:category])
         @valueizer   = create_lambda(options[:value])
       end
-      
+
       @number_of_buckets = options[:number_of_buckets] || 1000
       @min_bucket_value  = options[:min_bucket_value] ? options[:min_bucket_value].to_f : 0.000001
       @max_bucket_value  = options[:max_bucket_value] ? options[:max_bucket_value].to_f : 1_000_000_000
@@ -66,8 +66,8 @@ module RequestLogAnalyzer::Tracker
     def report_table(output, sort, options = {}, &block)
       output.puts
       top_categories = output.slice_results(sorted_by(sort))
-      output.with_style(:top_line => true) do
-        output.table(*statistics_header(:title => options[:title], :highlight => sort)) do |rows|
+      output.with_style(top_line: true) do
+        output.table(*statistics_header(title: options[:title], highlight: sort)) do |rows|
           top_categories.each { |(cat, info)| rows << statistics_row(cat) }
         end
       end
@@ -95,7 +95,7 @@ module RequestLogAnalyzer::Tracker
     def report(output)
       sortings = output.options[:sort] || [:sum, :mean]
       sortings.each do |sorting|
-        report_table(output, sorting, :title => "#{title} - by #{sorting}")
+        report_table(output, sorting, title: "#{title} - by #{sorting}")
       end
 
       if options[:total]
@@ -199,8 +199,8 @@ module RequestLogAnalyzer::Tracker
     def percentile(category, x, type = nil)
       bucket_value(percentile_index(category, x, type == :upper), type)
     end
-    
-    
+
+
     def median(category)
       percentile(category, 50, :average)
     end
@@ -218,7 +218,7 @@ module RequestLogAnalyzer::Tracker
         Range.new(bucket_lower_bound(lower), bucket_upper_bound(upper))
       when Numeric
         percentile_interval(category, Range.new((100 - x) / 2, (100 - (100 - x) / 2)))
-      else 
+      else
         raise 'What does it mean?'
       end
     end
@@ -227,9 +227,9 @@ module RequestLogAnalyzer::Tracker
     # <tt>category</tt>:: The category for which to update the running statistics calculations
     # <tt>number</tt>:: The numeric value to update the calculations with.
     def update_statistics(category, number)
-      @categories[category] ||= { :hits => 0, :sum => 0, :mean => 0.0, :sum_of_squares => 0.0, :min => number, :max => number, 
-                                  :buckets => Array.new(@number_of_buckets, 0) }
-      
+      @categories[category] ||= { hits: 0, sum: 0, mean: 0.0, sum_of_squares: 0.0, min: number, max: number,
+                                  buckets: Array.new(@number_of_buckets, 0) }
+
       delta = number - @categories[category][:mean]
 
       @categories[category][:hits]           += 1
@@ -313,21 +313,21 @@ module RequestLogAnalyzer::Tracker
     # Returns the column header for a statistics table to report on the statistics result
     def statistics_header(options)
       [
-        {:title => options[:title], :width => :rest},
-        {:title => 'Hits',   :align => :right, :highlight => (options[:highlight] == :hits),   :min_width => 4},
-        {:title => 'Sum',    :align => :right, :highlight => (options[:highlight] == :sum),    :min_width => 6},
-        {:title => 'Mean',   :align => :right, :highlight => (options[:highlight] == :mean),   :min_width => 6},
-        {:title => 'StdDev', :align => :right, :highlight => (options[:highlight] == :stddev), :min_width => 6},
-        {:title => 'Min',    :align => :right, :highlight => (options[:highlight] == :min),    :min_width => 6},
-        {:title => 'Max',    :align => :right, :highlight => (options[:highlight] == :max),    :min_width => 6},
-        {:title => '95 %tile',    :align => :right, :highlight => (options[:highlight] == :percentile_interval),  :min_width => 11}
+        {title: options[:title], width: :rest},
+        {title: 'Hits',   align: :right, highlight: (options[:highlight] == :hits),   min_width: 4},
+        {title: 'Sum',    align: :right, highlight: (options[:highlight] == :sum),    min_width: 6},
+        {title: 'Mean',   align: :right, highlight: (options[:highlight] == :mean),   min_width: 6},
+        {title: 'StdDev', align: :right, highlight: (options[:highlight] == :stddev), min_width: 6},
+        {title: 'Min',    align: :right, highlight: (options[:highlight] == :min),    min_width: 6},
+        {title: 'Max',    align: :right, highlight: (options[:highlight] == :max),    min_width: 6},
+        {title: '95 %tile',    align: :right, highlight: (options[:highlight] == :percentile_interval),  min_width: 11}
       ]
     end
 
     # Returns a row of statistics information for a report table, given a category
     def statistics_row(cat)
       [cat, hits(cat), display_value(sum(cat)), display_value(mean(cat)), display_value(stddev(cat)),
-                display_value(min(cat)), display_value(max(cat)), 
+                display_value(min(cat)), display_value(max(cat)),
                 display_value(percentile_interval(cat, 95).begin) + '-' + display_value(percentile_interval(cat, 95).end) ]
     end
   end

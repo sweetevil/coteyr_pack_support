@@ -17,13 +17,13 @@
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 module Fleximage
   module Operator
-    
+
     # Draw text on the image.  Customize size, position, color, dropshadow, and font.
-    # 
+    #
     #   image.text(string_to_write, options = {})
     #
     # Use the following keys in the +options+ hash:
-    # 
+    #
     # * alignment: symbol like in <tt>ImageOverlay</tt>
     # * offset: size string
     # * antialias: true or false
@@ -31,7 +31,7 @@ module Fleximage
     # * font_size: integer
     # * font: path to a font file relative to +Rails.root+
     # * rotate: degrees as an integer
-    # * shadow: <tt>{:blur => 1, :opacity => 1.0}</tt>
+    # * shadow: <tt>{blur: 1, opacity: 1.0}</tt>
     # * font_weight: RMagick font weight constant or value. See: http://www.imagemagick.org/RMagick/doc/draw.html#font_weight
     # * stroke: hash that, if present, will stroke the text.  The hash should have both <tt>:width</tt> (integer) and <tt>:color</tt> (string or color object).
     #
@@ -39,38 +39,38 @@ module Fleximage
     #
     #   @photo.operate do |image|
     #     image.text('I like Cheese',
-    #       :alignment => :top_left,
-    #       :offset => '300x150',
-    #       :antialias => true,
-    #       :color => 'pink',
-    #       :font_size => 24,
-    #       :font => 'path/to/myfont.ttf',
-    #       :rotate => -15,
-    #       :shadow => {
-    #         :blur => 1,
-    #         :opacity => 0.5,
+    #       alignment: :top_left,
+    #       offset: '300x150',
+    #       antialias: true,
+    #       color: 'pink',
+    #       font_size: 24,
+    #       font: 'path/to/myfont.ttf',
+    #       rotate: -15,
+    #       shadow: {
+    #         blur: 1,
+    #         opacity: 0.5,
     #       },
-    #       :stroke => {
-    #         :width => 3,
-    #         :color => color(0, 0, 0),
+    #       stroke: {
+    #         width: 3,
+    #         color: color(0, 0, 0),
     #       }
     #     )
     #   end
     class Text < Operator::Base
       def operate(string_to_write, options = {})
         options = {
-          :alignment  => :top_left,
-          :offset     => '0x0',
-          :antialias  => true,
-          :color      => 'black',
-          :font_size  => '12',
-          :font       => nil,
-          :text_align => :left,
-          :rotate     => 0,
-          :shadow     => nil,
-          :stroke     => {
-            :width => 0,
-            :color => 'white',
+          alignment:  :top_left,
+          offset:     '0x0',
+          antialias:  true,
+          color:      'black',
+          font_size:  '12',
+          font:       nil,
+          text_align: :left,
+          rotate:     0,
+          shadow:     nil,
+          stroke:     {
+            width: 0,
+            color: 'white',
           }
         }.merge(options)
         options[:offset] = size_to_xy(options[:offset])
@@ -83,7 +83,7 @@ module Fleximage
         text.pointsize      = options[:font_size].to_i
         text.rotation       = options[:rotate]
         text.font_weight    = options[:font_weight] if options[:font_weight]
-        
+
         if options[:stroke][:width] > 0
           text.stroke_width   = options[:stroke][:width]
           text.stroke         = options[:stroke][:color]
@@ -116,6 +116,6 @@ module Fleximage
         @image.composite!(temp_image, 0, 0, symbol_to_blending_mode(:over))
       end
     end
-    
+
   end
 end

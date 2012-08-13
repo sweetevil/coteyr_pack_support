@@ -15,7 +15,7 @@
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
 
-<%%= render "layouts/error_messages", :target => @<%= underscore_name.singularize %> %>
+<%%= render "layouts/error_messages", target: @<%= underscore_name.singularize %> %>
 <%= "\<\%\= form_title \"#{underscore_name.singularize}\" \%\>" %>
 <%= "\<\%\= form_for @#{underscore_name.singularize} do |f| \%\>" %>
   <%= "\<\%\= field_set_tag '#{underscore_name.singularize}' do \%\>" %>

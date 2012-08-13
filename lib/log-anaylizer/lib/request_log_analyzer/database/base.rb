@@ -9,12 +9,12 @@ class RequestLogAnalyzer::Database::Base < ActiveRecord::Base
       source_comparison
     end
   end
-  
+
   # Handle format manually, because it is prohibidado in Rails 3.2.1
   def format=(arg)
     self.attributes[:format] = arg
   end
-  
+
   def format(arg)
     self.attributes[:format]
   end
@@ -33,8 +33,8 @@ class RequestLogAnalyzer::Database::Base < ActiveRecord::Base
     klass.line_definition = definition
 
     # Set relations with requests and sources table
-    klass.belongs_to :request, :class_name => RequestLogAnalyzer::Database::Request.name
-    klass.belongs_to :source, :class_name => RequestLogAnalyzer::Database::Source.name
+    klass.belongs_to :request, class_name: RequestLogAnalyzer::Database::Request.name
+    klass.belongs_to :source, class_name: RequestLogAnalyzer::Database::Source.name
 
     # Serialize complex fields into the database
     definition.captures.select { |c| c.has_key?(:provides) }.each do |capture|
@@ -54,12 +54,12 @@ class RequestLogAnalyzer::Database::Base < ActiveRecord::Base
     klass.table_name = table
 
     if klass.column_names.include?('request_id')
-      klass.belongs_to :request, :class_name => RequestLogAnalyzer::Database::Request.name
+      klass.belongs_to :request, class_name: RequestLogAnalyzer::Database::Request.name
       RequestLogAnalyzer::Database::Request.has_many table.to_sym
     end
 
     if klass.column_names.include?('source_id')
-      klass.belongs_to :source, :class_name => RequestLogAnalyzer::Database::Source.name
+      klass.belongs_to :source, class_name: RequestLogAnalyzer::Database::Source.name
       RequestLogAnalyzer::Database::Source.has_many table.to_sym
     end
 
@@ -93,7 +93,7 @@ class RequestLogAnalyzer::Database::Base < ActiveRecord::Base
           capture[:provides].each { |field, field_type| t.column(field, column_type(field_type)) } if capture[:provides].kind_of?(Hash)
         end
       end
-      
+
       # Add indices to table for more speedy querying
       database.connection.add_index(self.table_name.to_sym, [:request_id]) # rescue
       database.connection.add_index(self.table_name.to_sym, [:source_id])  # rescue

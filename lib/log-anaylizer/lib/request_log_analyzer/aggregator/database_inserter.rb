@@ -19,7 +19,7 @@ module RequestLogAnalyzer::Aggregator
     # current file format
     def prepare
       require 'request_log_analyzer/database'
-      
+
       @sources = {}
       @database = RequestLogAnalyzer::Database.new(options[:database])
       @database.file_format = source.file_format
@@ -32,11 +32,11 @@ module RequestLogAnalyzer::Aggregator
     # This will create a record in the requests table and create a record for every line that has been parsed,
     # in which the captured values will be stored.
     def aggregate(request)
-      @request_object = RequestLogAnalyzer::Database::Request.new(:first_lineno => request.first_lineno, :last_lineno => request.last_lineno)
+      @request_object = RequestLogAnalyzer::Database::Request.new(first_lineno: request.first_lineno, last_lineno: request.last_lineno)
       request.lines.each do |line|
         class_columns = database.get_class(line[:line_type]).column_names.reject { |column| ['id', 'source_id', 'request_id'].include?(column) }
         attributes = Hash[*line.select { |(k, v)| class_columns.include?(k.to_s)}.flatten]
-        
+
         # Fix encoding patch for 1.9.2
         attributes.each do |k,v|
           attributes[k] = v.force_encoding("UTF-8") if v.is_a?(String) && "".respond_to?("force_encoding")
@@ -58,7 +58,7 @@ module RequestLogAnalyzer::Aggregator
 
     # Records w warining in the warnings table.
     def warning(type, message, lineno)
-      RequestLogAnalyzer::Database::Warning.create!(:warning_type => type.to_s, :message => message, :lineno => lineno)
+      RequestLogAnalyzer::Database::Warning.create!(warning_type: type.to_s, message: message, lineno: lineno)
     end
 
     # Records source changes in the sources table
@@ -66,9 +66,9 @@ module RequestLogAnalyzer::Aggregator
       if File.exist?(filename)
         case change
         when :started
-          @sources[filename] = RequestLogAnalyzer::Database::Source.create!(:filename => filename)
+          @sources[filename] = RequestLogAnalyzer::Database::Source.create!(filename: filename)
         when :finished
-          @sources[filename].update_attributes!(:filesize => File.size(filename), :mtime => File.mtime(filename))
+          @sources[filename].update_attributes!(filesize: File.size(filename), mtime: File.mtime(filename))
         end
       end
     end

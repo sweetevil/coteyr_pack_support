@@ -1,8 +1,8 @@
-module RestfulTesting 
+module RestfulTesting
 
 private
 	  def restful_actions(id=1, params={})
-			id_based_params = params.merge({:id=>id})
+			id_based_params = params.merge({id: id})
 			get :show, id_based_params
 			assert_response :success
 			get :index, params

@@ -18,11 +18,11 @@ module RequestLogAnalyzer::FileFormat
 
     # A hash of predefined Apache log formats
     LOG_FORMAT_DEFAULTS = {
-      :common   => '%h %l %u %t "%r" %>s %b',
-      :combined => '%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"',
-      :rack     => '%h %l %u %t "%r" %>s %b %T',
-      :referer  => '%{Referer}i -> %U',
-      :agent    => '%{User-agent}i'
+      common:   '%h %l %u %t "%r" %>s %b',
+      combined: '%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-agent}i"',
+      rack:     '%h %l %u %t "%r" %>s %b %T',
+      referer:  '%{Referer}i -> %U',
+      agent:    '%{User-agent}i'
     }
 
     # I have encountered two timestamp types, with timezone and without. Parse both.
@@ -30,25 +30,25 @@ module RequestLogAnalyzer::FileFormat
 
     # A hash that defines how the log format directives should be parsed.
     LOG_DIRECTIVES = {
-      '%' => { nil => { :regexp => '%', :captures => [] } },
-      'h' => { nil => { :regexp => "(#{hostname_or_ip_address})",  :captures => [{:name => :remote_host, :type => :string}] } },
-      'a' => { nil => { :regexp => "(#{ip_address})", :captures => [{:name => :remote_ip, :type => :string}] } },
-      'b' => { nil => { :regexp => '(\d+|-)', :captures => [{:name => :bytes_sent, :type => :traffic}] } },
-      'c' => { nil => { :regexp => '(\+|\-|\X)', :captures => [{:name => :connection_status, :type => :integer}] } },
-      'D' => { nil     => { :regexp => '(\d+|-)', :captures => [ {:name => :duration, :type => :duration, :unit => :musec }] },
-               'micro' => { :regexp => '(\d+|-)', :captures => [ {:name => :duration, :type => :duration, :unit => :musec }] },
-               'milli' => { :regexp => '(\d+|-)', :captures => [ {:name => :duration, :type => :duration, :unit => :msec }] }
+      '%' => { nil => { regexp: '%', captures: [] } },
+      'h' => { nil => { regexp: "(#{hostname_or_ip_address})",  captures: [{name: :remote_host, type: :string}] } },
+      'a' => { nil => { regexp: "(#{ip_address})", captures: [{name: :remote_ip, type: :string}] } },
+      'b' => { nil => { regexp: '(\d+|-)', captures: [{name: :bytes_sent, type: :traffic}] } },
+      'c' => { nil => { regexp: '(\+|\-|\X)', captures: [{name: :connection_status, type: :integer}] } },
+      'D' => { nil     => { regexp: '(\d+|-)', captures: [ {name: :duration, type: :duration, unit: :musec }] },
+               'micro' => { regexp: '(\d+|-)', captures: [ {name: :duration, type: :duration, unit: :musec }] },
+               'milli' => { regexp: '(\d+|-)', captures: [ {name: :duration, type: :duration, unit: :msec }] }
              },
-      'l' => { nil => { :regexp => '([\w-]+)', :captures => [{:name => :remote_logname, :type => :nillable_string}] } },
-      'T' => { nil => { :regexp => '((?:\d+(?:\.\d+))|-)', :captures => [{:name => :duration, :type => :duration, :unit => :sec}] } },
-      't' => { nil => { :regexp => "\\[(#{APACHE_TIMESTAMP})?\\]", :captures => [{:name => :timestamp, :type => :timestamp}] } },
-      's' => { nil => { :regexp => '(\d{3})', :captures => [{:name => :http_status, :type => :integer}] } },
-      'u' => { nil => { :regexp => '(\w+|-)', :captures => [{:name => :user, :type => :nillable_string}] } },
-      'U' => { nil => { :regexp => '(\/\S*)', :captures => [{:name => :path, :type => :string}] } },
-      'r' => { nil => { :regexp => '([A-Z]+) (\S+) HTTP\/(\d+(?:\.\d+)*)', :captures => [{:name => :http_method, :type => :string},
-                       {:name => :path, :type => :path}, {:name => :http_version, :type => :string}]} },
-      'i' => { 'Referer'    => { :regexp => '(\S+)', :captures => [{:name => :referer, :type => :nillable_string}] },
-               'User-agent' => { :regexp => '(.*)',  :captures => [{:name => :user_agent, :type => :user_agent}] }
+      'l' => { nil => { regexp: '([\w-]+)', captures: [{name: :remote_logname, type: :nillable_string}] } },
+      'T' => { nil => { regexp: '((?:\d+(?:\.\d+))|-)', captures: [{name: :duration, type: :duration, unit: :sec}] } },
+      't' => { nil => { regexp: "\\[(#{APACHE_TIMESTAMP})?\\]", captures: [{name: :timestamp, type: :timestamp}] } },
+      's' => { nil => { regexp: '(\d{3})', captures: [{name: :http_status, type: :integer}] } },
+      'u' => { nil => { regexp: '(\w+|-)', captures: [{name: :user, type: :nillable_string}] } },
+      'U' => { nil => { regexp: '(\/\S*)', captures: [{name: :path, type: :string}] } },
+      'r' => { nil => { regexp: '([A-Z]+) (\S+) HTTP\/(\d+(?:\.\d+)*)', captures: [{name: :http_method, type: :string},
+                       {name: :path, type: :path}, {name: :http_version, type: :string}]} },
+      'i' => { 'Referer'    => { regexp: '(\S+)', captures: [{name: :referer, type: :nillable_string}] },
+               'User-agent' => { regexp: '(.*)',  captures: [{name: :user_agent, type: :user_agent}] }
              }
     }
 
@@ -58,19 +58,19 @@ module RequestLogAnalyzer::FileFormat
     def self.create(*args)
       access_line = access_line_definition(args.first)
       trackers = report_trackers(access_line) + report_definer.trackers
-      self.new(line_definer.line_definitions.merge(:access => access_line), trackers)
+      self.new(line_definer.line_definitions.merge(access: access_line), trackers)
     end
 
     # Creates the access log line definition based on the Apache log format string
     def self.access_line_definition(format_string)
       format_string ||= :common
       format_string   = LOG_FORMAT_DEFAULTS[format_string.to_sym] || format_string
-      
-      
+
+
       line_regexp = ''
       captures    = []
       format_string.scan(/([^%]*)(?:%(?:\{([^\}]+)\})?>?([A-Za-z%]))?/) do |literal, arg, variable|
-        
+
         line_regexp << Regexp.quote(literal) # Make sure to parse the literal before the directive
 
         if variable
@@ -86,10 +86,10 @@ module RequestLogAnalyzer::FileFormat
           end
         end
       end
-      
+
       # Return a new line definition object
-      return RequestLogAnalyzer::LineDefinition.new(:access, :regexp => Regexp.new(line_regexp),
-                                        :captures => captures, :header => true, :footer => true)
+      return RequestLogAnalyzer::LineDefinition.new(:access, regexp: Regexp.new(line_regexp),
+                                        captures: captures, header: true, footer: true)
     end
 
     # Sets up the report trackers according to the fields captured by the access line definition.
@@ -99,15 +99,15 @@ module RequestLogAnalyzer::FileFormat
       analyze.timespan      if line_definition.captures?(:timestamp)
       analyze.hourly_spread if line_definition.captures?(:timestamp)
 
-      analyze.frequency :category => :http_method, :title => "HTTP methods"  if line_definition.captures?(:http_method)
-      analyze.frequency :category => :http_status, :title => "HTTP statuses" if line_definition.captures?(:http_status)
-      analyze.frequency :category => lambda { |r| r.category }, :title => "Most popular URIs"    if line_definition.captures?(:path)
+      analyze.frequency category: :http_method, title: "HTTP methods"  if line_definition.captures?(:http_method)
+      analyze.frequency category: :http_status, title: "HTTP statuses" if line_definition.captures?(:http_status)
+      analyze.frequency category: lambda { |r| r.category }, title: "Most popular URIs"    if line_definition.captures?(:path)
 
-      analyze.frequency :category => :user_agent, :title => "User agents"    if line_definition.captures?(:user_agent)
-      analyze.frequency :category => :referer,    :title => "Referers"       if line_definition.captures?(:referer)
+      analyze.frequency category: :user_agent, title: "User agents"    if line_definition.captures?(:user_agent)
+      analyze.frequency category: :referer,    title: "Referers"       if line_definition.captures?(:referer)
 
-      analyze.duration :duration => :duration,  :category => lambda { |r| r.category }, :title => 'Request duration' if line_definition.captures?(:duration)
-      analyze.traffic  :traffic => :bytes_sent, :category => lambda { |r| r.category }, :title => 'Traffic'          if line_definition.captures?(:bytes_sent)
+      analyze.duration duration: :duration,  category: lambda { |r| r.category }, title: 'Request duration' if line_definition.captures?(:duration)
+      analyze.traffic  traffic: :bytes_sent, category: lambda { |r| r.category }, title: 'Traffic'          if line_definition.captures?(:bytes_sent)
 
       return analyze.trackers
     end

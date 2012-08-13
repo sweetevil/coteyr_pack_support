@@ -119,7 +119,7 @@ To use the generator:
 
 * @--stateful@: Builds in support for acts_as_state_machine and generates activation code.  (@--stateful@ implies @--include-activation@). Based on the idea at "http://www.vaporbase.com/postings/stateful_authentication":http://www.vaporbase.com/postings/stateful_authentication. Passing @--skip-migration@ will skip the user migration, and @--skip-routes@ will skip resource generation both useful if you've already run this generator. (Needs the "acts_as_state_machine plugin":http://elitists.textdriven.com/svn/plugins/acts_as_state_machine/, but new installs should probably run with @--aasm@ instead.)
 
-* @--aasm@: Works the same as stateful but uses the "updated aasm gem":http://github.com/rubyist/aasm/tree/master<br /> Add <code>gem 'rubyist-aasm', :require => 'aasm'</code> to @Gemfile@ for use in projects that use rails3-beta
+* @--aasm@: Works the same as stateful but uses the "updated aasm gem":http://github.com/rubyist/aasm/tree/master<br /> Add <code>gem 'rubyist-aasm', require: 'aasm'</code> to @Gemfile@ for use in projects that use rails3-beta
 
 * @--rspec@: Generate RSpec tests and Stories in place of standard rails tests. This requires the "RSpec-2 for Rails-3":http://github.com/rspec/rspec-rails, run @gem install rspec-rails --pre@ to install RSpec-2 for Rails-3(make sure you @rails g rspec:install@ after installing RSpec.) The rspec and story suite are much more thorough than the rails tests, and changes are unlikely to be backported.
 
@@ -136,13 +136,13 @@ The below assumes a Model named 'User' and a Controller named 'Session'; please 
 
 * Add these familiar login URLs to your @config/routes.rb@ if you like:
 <pre><code>
- match 'login' => 'sessions#new', :as => :login
- match 'logout' => 'sessions#destroy', :as => :logout
- match 'signup' => 'users#new', :as => :signup
+ match 'login' => 'sessions#new', as: :login
+ match 'logout' => 'sessions#destroy', as: :logout
+ match 'signup' => 'users#new', as: :signup
 </code></pre>
 
 * With @--include-activation@, also add to your @config/routes.rb@:
-<pre><code>match 'activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil</code></pre>
+<pre><code>match 'activate/:activation_code' => 'users#activate', as: :activate, activation_code: nil</code></pre>
 and add an observer to @config/application.rb@:
 <pre><code>config.active_record.observers = :user_observer</code></pre>
 Pay attention, may be this is not an issue for everybody, but if you should have problems, that the sent activation_code does match with that in the database stored, reload your user object before sending its data through email something like:

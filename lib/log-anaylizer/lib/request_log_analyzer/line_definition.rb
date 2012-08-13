@@ -16,7 +16,7 @@ module RequestLogAnalyzer
       def initialize_copy(other)
         @line_definitions = other.line_definitions.dup
       end
-      
+
       def define_line(name, arg = {}, &block)
         if block_given?
           @line_definitions[name] = RequestLogAnalyzer::LineDefinition.define(name, &block)
@@ -32,13 +32,13 @@ module RequestLogAnalyzer
 
     class CaptureDefiner
       attr_accessor :capture_hash
-      
+
       def initialize(hash)
         @capture_hash = hash
       end
-      
+
       def as(type, type_options = {})
-        @capture_hash.merge!(type_options.merge(:type => type))
+        @capture_hash.merge!(type_options.merge(type: type))
         return self
       end
     end
@@ -64,13 +64,13 @@ module RequestLogAnalyzer
       yield(definition) if block_given?
       return definition
     end
-    
+
     def capture(name)
-      new_capture_hash = { :name => name, :type => :string}
+      new_capture_hash = { name: name, type: :string}
       captures << new_capture_hash
       CaptureDefiner.new(new_capture_hash)
     end
-    
+
     def all_captured_variables
       captures.map { |c| c[:name] } + captures.map { |c| c[:provides] }.compact.map { |pr| pr.keys }.flatten
     end
@@ -83,7 +83,7 @@ module RequestLogAnalyzer
     def matches(line, &warning_handler)
       if @teaser.nil? || @teaser =~ line
         if match_data = line.match(@regexp)
-          return { :line_definition => self, :captures => match_data.captures}
+          return { line_definition: self, captures: match_data.captures}
         else
           if @teaser && warning_handler
             warning_handler.call(:teaser_check_failed, "Teaser matched for #{name.inspect}, but full line did not:\n#{line.inspect}")
@@ -123,7 +123,7 @@ module RequestLogAnalyzer
         # if it is a hash and they are set in the :provides hash for this line definition
         if converted.kind_of?(Hash) && capture[:provides].kind_of?(Hash)
           capture[:provides].each do |name, type|
-            value_hash[name] ||= request.convert_value(converted[name], { :type => type })
+            value_hash[name] ||= request.convert_value(converted[name], { type: type })
           end
         end
       end

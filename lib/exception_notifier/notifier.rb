@@ -24,10 +24,10 @@ class ExceptionNotifier
       end
 
       def default_options
-        { :sender_address => default_sender_address,
-          :exception_recipients => default_exception_recipients,
-          :email_prefix => default_email_prefix,
-          :sections => default_sections }
+        { sender_address: default_sender_address,
+          exception_recipients: default_exception_recipients,
+          email_prefix: default_email_prefix,
+          sections: default_sections }
       end
     end
 
@@ -55,21 +55,21 @@ class ExceptionNotifier
 
       @project_name = @options[:project_name]
       @tracker = @options[:project_tracker]
-      mail(:to => @options[:exception_recipients], :from => @options[:sender_address], :subject => subject) do |format|
+      mail(to: @options[:exception_recipients], from: @options[:sender_address], subject: subject) do |format|
         format.text { render "#{mailer_name}/exception_notification" }
       end
     end
 
     private
-      
+
       def clean_backtrace(exception)
         Rails.respond_to?(:backtrace_cleaner) ?
           Rails.backtrace_cleaner.send(:filter, exception.backtrace) :
           exception.backtrace
       end
-      
+
       helper_method :inspect_object
-      
+
       def inspect_object(object)
         case object
         when Hash, Array
@@ -80,6 +80,6 @@ class ExceptionNotifier
           object.to_s
         end
       end
-      
+
   end
 end

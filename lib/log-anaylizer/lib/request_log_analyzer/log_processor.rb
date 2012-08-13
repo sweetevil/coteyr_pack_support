@@ -22,8 +22,8 @@ module RequestLogAnalyzer
     def self.build(command, arguments)
 
       options = {
-          :discard_teaser_lines => arguments[:discard_teaser_lines],
-          :keep_junk_lines      => arguments[:keep_junk_lines],
+          discard_teaser_lines: arguments[:discard_teaser_lines],
+          keep_junk_lines:      arguments[:keep_junk_lines],
         }
 
       log_processor = RequestLogAnalyzer::LogProcessor.new(arguments[:format].to_sym, command, options)

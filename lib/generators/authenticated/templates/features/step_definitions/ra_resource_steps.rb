@@ -142,7 +142,7 @@ end
 def find_resource resource, conditions
   klass, instance = parse_resource_args resource
   conditions = conditions.to_hash_from_story unless (conditions.is_a? Hash)
-  klass.find(:first, :conditions => conditions)
+  klass.find(:first, conditions: conditions)
 end
 
 #

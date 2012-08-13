@@ -126,7 +126,7 @@ module CommandLine
       end
 
       def switch(name, switch_alias = nil)
-        option(name, :alias => switch_alias, :parameters => 0)
+        option(name, alias: switch_alias, parameters: 0)
       end
 
       def command(name, &block)

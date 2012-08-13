@@ -49,9 +49,9 @@ module RequestLogAnalyzer
 
       # Apache format workaround
       if arguments[:rails_format]
-        options[:format] = {:rails => arguments[:rails_format]}
+        options[:format] = {rails: arguments[:rails_format]}
       elsif arguments[:apache_format]
-        options[:format] = {:apache => arguments[:apache_format]}
+        options[:format] = {apache: arguments[:apache_format]}
       end
 
       # Handle output format casing
@@ -103,31 +103,31 @@ module RequestLogAnalyzer
     # * <tt>:database</tt> Database file to insert encountered requests to.
     # * <tt>:debug</tt> Enables echo aggregator which will echo each request analyzed.
     # * <tt>:file</tt> Filestring, File or StringIO.
-    # * <tt>:format</tt> :rails, {:apache => 'FORMATSTRING'}, :merb, :amazon_s3, :mysql or RequestLogAnalyzer::FileFormat class. (Defaults to :rails).
+    # * <tt>:format</tt> :rails, {apache: 'FORMATSTRING'}, :merb, :amazon_s3, :mysql or RequestLogAnalyzer::FileFormat class. (Defaults to :rails).
     # * <tt>:mail</tt> Email the results to this email address.
     # * <tt>:mailhost</tt> Email the results to this mail server.
     # * <tt>:mailsubject</tt> Email subject.
     # * <tt>:no_progress</tt> Do not display the progress bar (increases parsing speed).
     # * <tt>:output</tt> 'FixedWidth', 'HTML' or RequestLogAnalyzer::Output class. Defaults to 'FixedWidth'.
-    # * <tt>:reject</tt> Reject specific {:field => :value} combination (expects a single hash).
+    # * <tt>:reject</tt> Reject specific {field: :value} combination (expects a single hash).
     # * <tt>:report_width</tt> Width of reports in characters for FixedWidth reports. (Defaults to 80)
     # * <tt>:reset_database</tt> Reset the database before starting.
-    # * <tt>:select</tt> Select specific {:field => :value} combination (expects a single hash).
+    # * <tt>:select</tt> Select specific {field: :value} combination (expects a single hash).
     # * <tt>:source_files</tt> Source files to analyze. Provide either File, array of files or STDIN.
     # * <tt>:yaml</tt> Output to YAML file.
     # * <tt>:silent</tt> Minimal output automatically implies :no_progress
     #
     # === Example
     # RequestLogAnalyzer::Controller.build(
-    #   :output       => :HTML,
-    #   :mail         => 'root@localhost',
-    #   :after        => Time.now - 24*60*60,
-    #   :source_files => '/var/log/passenger.log'
+    #   output:       :HTML,
+    #   mail:         'root@localhost',
+    #   after:        Time.now - 24*60*60,
+    #   source_files: '/var/log/passenger.log'
     # ).run!
     #
     # === Todo
     # * Check if defaults work (Aggregator defaults seem wrong).
-    # * Refactor :database => options[:database], :dump => options[:dump] away from contoller intialization.
+    # * Refactor database: options[:database], dump: options[:dump] away from contoller intialization.
     def self.build(options)
       # Defaults
       options[:output]        ||= 'FixedWidth'
@@ -161,14 +161,14 @@ module RequestLogAnalyzer
 
       if options[:file]
         output_object = %w[File StringIO].include?(options[:file].class.name) ? options[:file] : File.new(options[:file], "w+")
-        output_args   = {:width => 80, :color => false, :characters => :ascii, :sort => output_sort, :amount => output_amount }
+        output_args   = {width: 80, color: false, characters: :ascii, sort: output_sort, amount: output_amount }
       elsif options[:mail]
-        output_object = RequestLogAnalyzer::Mailer.new(options[:mail], options[:mailhost], :subject => options[:mailsubject])
-        output_args   = {:width => 80, :color => false, :characters => :ascii, :sort => output_sort, :amount => output_amount  }
+        output_object = RequestLogAnalyzer::Mailer.new(options[:mail], options[:mailhost], subject: options[:mailsubject])
+        output_args   = {width: 80, color: false, characters: :ascii, sort: output_sort, amount: output_amount  }
       else
         output_object = STDOUT
-        output_args   = {:width => options[:report_width].to_i, :color => !options[:boring],
-                        :characters => (options[:boring] ? :ascii : :utf), :sort => output_sort, :amount => output_amount }
+        output_args   = {width: options[:report_width].to_i, color: !options[:boring],
+                        characters: (options[:boring] ? :ascii : :utf), sort: output_sort, amount: output_amount }
       end
 
       output_instance = output_class.new(output_object, output_args)
@@ -183,14 +183,14 @@ module RequestLogAnalyzer
       # Kickstart the controller
       controller =
         Controller.new(RequestLogAnalyzer::Source::LogParser.new(file_format,
-                                                                 :source_files => options[:source_files],
-                                                                 :parse_strategy => options[:parse_strategy]),
-                       { :output         => output_instance,
-                         :database       => options[:database],                # FUGLY!
-                         :yaml           => options[:yaml],
-                         :reset_database => options[:reset_database],
-                         :no_progress    => options[:no_progress],
-                         :silent         => options[:silent]
+                                                                 source_files: options[:source_files],
+                                                                 parse_strategy: options[:parse_strategy]),
+                       { output:         output_instance,
+                         database:       options[:database],                # FUGLY!
+                         yaml:           options[:yaml],
+                         reset_database: options[:reset_database],
+                         no_progress:    options[:no_progress],
+                         silent:         options[:silent]
                        })
 
       # register filters
@@ -209,13 +209,13 @@ module RequestLogAnalyzer
 
       if options[:reject]
         options[:reject].each do |(field, value)|
-          controller.add_filter(:field, :mode => :reject, :field => field, :value => value)
+          controller.add_filter(:field, mode: :reject, field: field, value: value)
         end
       end
 
       if options[:select]
         options[:select].each do |(field, value)|
-          controller.add_filter(:field, :mode => :select, :field => field, :value => value)
+          controller.add_filter(:field, mode: :select, field: field, value: value)
         end
       end
 

@@ -5,14 +5,14 @@ module RequestLogAnalyzer::FileFormat
   # Access logs are disabled by default on Amazon S3. To enable logging, see
   # http://docs.amazonwebservices.com/AmazonS3/latest/index.html?ServerLogs.html
   class AmazonS3 < Base
-    
+
     extend CommonRegularExpressions
 
     line_definition :access do |line|
       line.header = true
       line.footer = true
       line.regexp = /^([^\ ]+) ([^\ ]+) \[(#{timestamp('%d/%b/%Y:%H:%M:%S %z')})?\] (#{ip_address}) ([^\ ]+) ([^\ ]+) (\w+(?:\.\w+)*) ([^\ ]+) "([^"]+)" (\d+) ([^\ ]+) (\d+) (\d+) (\d+) (\d+) "([^"]*)" "([^"]*)"/
-      
+
       line.capture(:bucket_owner)
       line.capture(:bucket)
       line.capture(:timestamp).as(:timestamp)
@@ -24,10 +24,10 @@ module RequestLogAnalyzer::FileFormat
       line.capture(:request_uri)
       line.capture(:http_status).as(:integer)
       line.capture(:error_code).as(:nillable_string)
-      line.capture(:bytes_sent).as(:traffic, :unit => :byte)
-      line.capture(:object_size).as(:traffic, :unit => :byte)
-      line.capture(:total_time).as(:duration, :unit => :msec)
-      line.capture(:turnaround_time).as(:duration, :unit => :msec)
+      line.capture(:bytes_sent).as(:traffic, unit: :byte)
+      line.capture(:object_size).as(:traffic, unit: :byte)
+      line.capture(:total_time).as(:duration, unit: :msec)
+      line.capture(:turnaround_time).as(:duration, unit: :msec)
       line.capture(:referer).as(:referer)
       line.capture(:user_agent).as(:user_agent)
     end
@@ -36,11 +36,11 @@ module RequestLogAnalyzer::FileFormat
       analyze.timespan
       analyze.hourly_spread
 
-      analyze.frequency :category => lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, :title => "Most popular items"
-      analyze.duration :duration => :total_time, :category => lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, :title => "Request duration"
-      analyze.traffic  :traffic => :bytes_sent,  :category => lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, :title => "Traffic"
-      analyze.frequency :category => :http_status, :title => 'HTTP status codes'
-      analyze.frequency :category => :error_code, :title => 'Error codes'
+      analyze.frequency category: lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, title: "Most popular items"
+      analyze.duration duration: :total_time, category: lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, title: "Request duration"
+      analyze.traffic  traffic: :bytes_sent,  category: lambda { |r| "#{r[:bucket]}/#{r[:key]}"}, title: "Traffic"
+      analyze.frequency category: :http_status, title: 'HTTP status codes'
+      analyze.frequency category: :error_code, title: 'Error codes'
     end
 
     class Request < RequestLogAnalyzer::Request

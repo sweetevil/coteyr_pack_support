@@ -57,8 +57,8 @@ module RequestLogAnalyzer::Tracker
       output.title(options[:title]) if options[:title]
 
       if @last > 0 && @first < 99999999999999
-        output.with_style(:cell_separator => false) do
-          output.table({:width => 20}, {}) do |rows|
+        output.with_style(cell_separator: false) do
+          output.table({width: 20}, {}) do |rows|
             rows << ['First request:', first_timestamp.strftime('%Y-%m-%d %H:%M:%I')]
             rows << ['Last request:',  last_timestamp.strftime('%Y-%m-%d %H:%M:%I')]
             rows << ['Total time analyzed:', "#{timespan.ceil} days"]
@@ -74,7 +74,7 @@ module RequestLogAnalyzer::Tracker
 
     # A hash that can be exported to YAML with the first and last timestamp encountered.
     def to_yaml_object
-      { :first => first_timestamp, :last  =>last_timestamp }
+      { first: first_timestamp, last: last_timestamp }
     end
 
   end

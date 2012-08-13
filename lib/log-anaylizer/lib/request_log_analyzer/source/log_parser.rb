@@ -15,7 +15,7 @@ module RequestLogAnalyzer::Source
 
     # The maximum number of bytes to read from a line.
     DEFAULT_MAX_LINE_LENGTH = 8096
-    
+
     DEFAULT_LINE_DIVIDER = "\n"
 
     # The default parse strategy that will be used to parse the input.
@@ -56,7 +56,7 @@ module RequestLogAnalyzer::Source
     def max_line_length
       file_format.max_line_length || DEFAULT_MAX_LINE_LENGTH
     end
-    
+
     def line_divider
       file_format.line_divider || DEFAULT_LINE_DIVIDER
     end
@@ -145,7 +145,7 @@ module RequestLogAnalyzer::Source
     def parse_stream(stream, options = {}, &block)
       parse_io(stream, options, &block)
     end
-    
+
     # Parses a string. It will simply call parse_io. This function does not support progress updates.
     # <tt>string</tt>:: The string that should be parsed.
     # <tt>options</tt>:: A Hash of options that will be pased to parse_io.
@@ -180,7 +180,7 @@ module RequestLogAnalyzer::Source
       warn(:unfinished_request_on_eof, "End of file reached, but last request was not completed!") unless @current_request.nil?
       @current_lineno = nil
     end
-    
+
     # This method loops over each line of the input stream. It will try to parse this line as any of
     # the lines that are defined by the current file format (see RequestLogAnalyazer::FileFormat).
     # It will then combine these parsed line into requests using heuristics. These requests (see
@@ -194,7 +194,7 @@ module RequestLogAnalyzer::Source
     # This is a Ruby 1.8 specific version that doesn't offer memory protection.
     #
     # <tt>io</tt>:: The IO instance to use as source
-    # <tt>options</tt>:: A hash of options that can be used by the parser.    
+    # <tt>options</tt>:: A hash of options that can be used by the parser.
     def parse_io_18(io, options = {}, &block) # :yields: request
       @line_divider    = options[:line_divider]    || line_divider
       @current_lineno  = 0
@@ -207,9 +207,9 @@ module RequestLogAnalyzer::Source
       warn(:unfinished_request_on_eof, "End of file reached, but last request was not completed!") unless @current_request.nil?
       @current_lineno = nil
     end
-    
+
     alias_method :parse_io, RUBY_VERSION.to_f < 1.9 ? :parse_io_18 : :parse_io_19
-    
+
     # Parses a single line using the current file format. If successful, use the parsed
     # information to build a request
     # <tt>line</tt>:: The line to parse
@@ -217,7 +217,7 @@ module RequestLogAnalyzer::Source
     def parse_line(line, &block) # :yields: request
       if request_data = file_format.parse_line(line) { |wt, message| warn(wt, message) }
         @parsed_lines += 1
-        update_current_request(request_data.merge(:source => @current_source, :lineno => @current_lineno), &block)
+        update_current_request(request_data.merge(source: @current_source, lineno: @current_lineno), &block)
       end
     end
 
