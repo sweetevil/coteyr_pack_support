@@ -59,6 +59,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  require File.expand_path("../../config/routes", __FILE__)
   # This code will be run each time you run your specs.
   if ENV['DRB']
     require 'simplecov'
