@@ -125,7 +125,7 @@ module AuthenticatedSystem
       begin
         <%= file_name %> = cookies[:auth_token] && <%= class_name %>.find_by_remember_token(cookies[:auth_token].value)
       rescue
-        <%= file_name %> = false
+        <%= file_name %> = false #this can happen when browsers send funky cookies and auth_token is a non-string (NoMethodError) cathcing all because of the oddity
       end
       if <%= file_name %> && <%= file_name %>.remember_token?
         self.current_<%= file_name %> = <%= file_name %>
