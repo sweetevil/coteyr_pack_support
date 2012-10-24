@@ -47,7 +47,7 @@ require 'fleximage/image_proxy'
 #ActionController::Base.exempt_from_layout :flexi
 if defined?(ActionView::Template)
   # Rails >= 2.1
-  if Rails.version.to_f >= 3 
+  if Rails.version.to_f >= 3
     require 'fleximage/rails3_view'
     ActionView::Template.register_template_handler :flexi, Fleximage::Rails3View
   else
@@ -70,5 +70,5 @@ ActionController::Base.class_eval{ include Fleximage::AviaryController }
 
 # Register mime types
 Mime::Type.register "image/jpeg", :jpg, ["image/pjpeg"], ["jpeg"]
-Mime::Type.register "image/gif", :gif
-Mime::Type.register "image/png", :png
+#Mime::Type.register "image/gif", :gif
+#Mime::Type.register "image/png", :png
