@@ -35,6 +35,7 @@ group :development, :test do
   gem 'ansi'
   gem 'autotest-fsevent'
   gem 'fabrication'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'spork-rails'
   gem "shoulda-matchers"
