@@ -14,7 +14,18 @@
    #    You should have received a copy of the GNU General Public License
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
-<%= "\<\%\= render partial: '#{underscore_name.singularize}', collection: @#{underscore_name} \%\>" %>
+<%= "\<\%\= well '#{underscore_name.singularize}', pad: false do \%\>" %>
+   <%= '<table class="table table-striped">' %>
+   <%= '<thead>' %>
+      <%= '<tr>' %>
+         <%= '<th>ID</th>' %>
+         <%= '<th></th>' %>
+      <%= '</tr>' %>
+   <%= '</thead>' %>
+   <%= '<tbody>' %>
+      <%= "\<\%\= render partial: '#{underscore_name.singularize}', collection: @#{underscore_name} \%\>" %>
+   <%= '</tbody>' %>
+<%= '</table>' %>
 <div class="center">
   <%= "\<\%\= link_to 'add new', new_#{underscore_name.singularize}_path \%\>" %>
 </div>

@@ -23,4 +23,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+    before_filter :set_page_title
+private
+  def set_page_title
+    @page_title ||= "Page Title"
+  end
 end

@@ -14,6 +14,7 @@
    #    You should have received a copy of the GNU General Public License
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
-<div class="<%= model_name %>">
-  <%= "\<\%\= #{underscore_name.singularize}.id \%\>" %>
-</div>
+<%= '<tr>' %>
+   <%= "<td>\<\%\= #{underscore_name.singularize}.id \%\></td> " %>
+   <%= "<td><%= link_to 'edit', edit_#{underscore_name.singularize}_path(#{underscore_name.singularize}), class: 'btn btn-info' )</td>" %>
+<%= '</tr>' %>
