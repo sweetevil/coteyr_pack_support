@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+form .clearfix:before, form .clearfix:after {
+  display: inline;
+}
+
+.error label,  .error  .help-block, .error .help-inline { color: #b94a48;  }
+.error input, .error select, .error textarea { border-color: #d7bcbb !important; }
+.error .input-prepend .add-on,  .error .input-append .add-on { color: #b94a48; background-color: #f2dede; border-color: #b94a48; }
+
+

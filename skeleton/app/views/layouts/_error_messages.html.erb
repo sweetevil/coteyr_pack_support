@@ -15,12 +15,14 @@
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
 <% if target.errors.any? %>
-  <div id="errorExplanation">
-    <h2><%= pluralize(target.errors.count, "error") %> prohibited this <%= target.class.name.underscore.humanize.downcase %> from being saved:</h2>
-    <ul>
+<%= row do %>
+  <%= well "#{pluralize(target.errors.count, "error")} prohibited this #{target.class.name.underscore.humanize.downcase} from being saved", size: 6, offset: 3 do %>
+    <h2></h2>
+    <ul class="arrow-list">
       <% target.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="text-error"><%= msg %></li>
       <% end %>
     </ul>
-  </div>
+  <% end %>
+  <% end %>
 <% end %>

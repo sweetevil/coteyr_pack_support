@@ -1,0 +1,6 @@
+<% @FLASH_NAMES = [:danger, :success, :warning, :info] %>
+<% for flsh in @FLASH_NAMES %>
+  <% if flash[flsh] %>
+    <%= notice(flash[flsh], flsh) %>
+  <% end %>
+<% end %>

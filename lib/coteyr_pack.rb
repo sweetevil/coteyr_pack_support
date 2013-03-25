@@ -19,6 +19,8 @@ require File.dirname(__FILE__) + '/restful.rb'
 require File.dirname(__FILE__) + '/initilizers/exception_notifier.rb'
 require File.dirname(__FILE__) + '/semantic_form_helper.rb'
 require File.dirname(__FILE__) + '/semantic_form_builder.rb'
+require File.dirname(__FILE__) + '/coteyr_form_helper.rb'
+require File.dirname(__FILE__) + '/coteyr_form_builder.rb'
 
 require File.join(File.dirname(__FILE__), 'restful-authentication', 'lib', "authentication")
 require File.join(File.dirname(__FILE__), 'restful-authentication', 'lib', "authentication", "by_password")

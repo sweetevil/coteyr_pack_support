@@ -1,0 +1,14 @@
+<ul class="navigation">
+    <%= nav_link_to 'Home', '/' %>
+    <%= nav_link_to 'Notices', {controller: 'samples', action: 'notices'}, {icon: 'menu-dashboard', count: 4} %>
+    <%= nav_link_to 'Navagation', {controller: 'samples', action: 'navagation'} %>
+    <%= nav_link_to 'Wells', {controller: 'samples', action: 'wells'}, {icon: 'menu-components'} %>
+    <%= nav_link_to 'Seperators', {controller: 'samples', action: 'seperators'}, {icon: 'menu-layouts'} %>
+    <%= nav_link_to 'Icons',  {controller: 'samples', action: 'icons'}, {icon: 'menu-files'} %>
+    <%= nav_link_to 'Buttons', {controller: 'samples', action: 'buttons'}, {icon: 'menu-icons'} %>
+    <%= nav_link_to 'Typography', {controller: 'samples', action: 'typography'}, {icon: 'menu-typo'} %>
+    <%= nav_link_to 'Tabs', {controller: 'samples', action: 'tabs'}, {icon: 'menu-layouts'} %>
+    <%= nav_link_to 'Bars', {controller: 'samples', action: 'bars'}, {icon: 'menu-charts'} %>
+    <%= nav_link_to 'Tables', {controller: 'samples', action: 'tables'} %>
+    <%= nav_link_to 'Forms', new_node_path %>
+</ul>

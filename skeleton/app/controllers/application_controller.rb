@@ -27,5 +27,6 @@ class ApplicationController < ActionController::Base
 private
   def set_page_title
     @page_title ||= "Page Title"
+    @page_icon ||= "font-list-ul"
   end
 end

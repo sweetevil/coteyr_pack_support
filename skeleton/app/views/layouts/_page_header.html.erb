@@ -1,0 +1,8 @@
+<div class="page-header">
+    <h5><i class="<%= @page_icon %>"></i><%= @page_title %></h5>
+    <ul class="icons">
+        <% if content_for(:page_icons) %>
+            <%= yield :page_icons %>
+        <% end %>
+    </ul>
+</div>

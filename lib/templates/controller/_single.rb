@@ -16,5 +16,8 @@
 -%>
 <%= '<tr>' %>
    <%= "<td>\<\%\= #{underscore_name.singularize}.id \%\></td> " %>
-   <%= "<td><%= link_to 'edit', edit_#{underscore_name.singularize}_path(#{underscore_name.singularize}), class: 'btn btn-info' )</td>" %>
+   <%= "<td>" %>
+      <%= "\<\%\= link_to 'edit', edit_node_path(node), class: 'btn btn-info' \%\>" %>
+      <%= "\<\%\= link_to 'view', node_path(node), class: 'btn btn-info' \%\>" %>
+   <%= '</td>' %>
 <%= '</tr>' %>

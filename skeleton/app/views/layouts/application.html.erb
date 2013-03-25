@@ -15,33 +15,32 @@
    #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
 -%>
 <!DOCTYPE html>
-<% @FLASH_NAMES = [:info, :error, :warning] %>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Site Name</title>
-        <%= csrf_meta_tag %>
-        <%= javascript_include_tag :application %>
-        <%= stylesheet_link_tag(:application) %>
-    </head>
-    <body>
-      <div class="header">
-          Site Name
-      </div>
-      <div class="navagation">
-        <ul>
-          <li><%= link_to 'Home', '/' %></li>
-        </ul>
-      </div>
-      <div class="content">
-        <% for flsh in @FLASH_NAMES %>
-          <% if flash[flsh] %>
-            <div id="flash-<%= flsh %>" class="flash">
-              <%= flash[flsh] %>
-            </div>
-          <% end %>
+<% @FLASH_NAMES = [:danger, :success, :warning, :info] %>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <%= csrf_meta_tag %>
+    <%= javascript_include_tag :application %>
+    <%= stylesheet_link_tag(:application) %>
+  </head>
+  <body>
+    <%= render partial: 'layouts/top_nav' %>
+    <%= render partial: 'layouts/notices' %>
+    <div class="wrapper">
+      <div class="sidebar">
+        <%= render partial: 'layouts/main_navagation' %>
+        <% if content_for?(:sidebar) %>
+          <%= yield(:sidebar) %>
         <% end %>
+      </div>
+    </div>
+     <div class="content">
+      <%= render partial: 'layouts/page_header' %>
+      <%= render partial: 'layouts/mid_navagation' %>
+      <div class="body">
         <%= yield :layout %>
       </div>
-    </body>
+    </div>
+  </body>
 </html>

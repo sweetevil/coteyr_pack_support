@@ -29,3 +29,5 @@
 <div class="center">
   <%= "\<\%\= link_to 'add new', new_#{underscore_name.singularize}_path \%\>" %>
 </div>
+
+<%= \<\% end \%\> %>
