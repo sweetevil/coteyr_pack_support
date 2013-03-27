@@ -60,6 +60,12 @@ class CoteyrFormBuilder < ActionView::Helpers::FormBuilder
     to_return += '</div>'
     to_return.html_safe
   end
+  def file_field(method, options = {})
+    field_name, label, options = field_settings(method, options)
+    options[:class] += ' style'
+    wrapping("password", field_name, label, super, options)
+  end
+
 
 
 
