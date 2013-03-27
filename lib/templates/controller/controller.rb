@@ -20,4 +20,10 @@ class <%= controller_name %> < ApplicationController
     @skope = "<%= model_name.camelize %>"
     @klass =  <%= model_name.camelize %>
   end
+  before_filter :set_page_name
+private
+  def set_page_name
+    @page_title = <%= underscore_name %>
+    @page_icon = 'font-list-ul'
+  end
 end
