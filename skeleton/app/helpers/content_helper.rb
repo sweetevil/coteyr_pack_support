@@ -54,18 +54,30 @@ module ContentHelper
     to_return.to_s.html_safe
   end
   def button(body, url="", options={})
-    to_return = '<button type="button" class="btn '
-    if options[:type]
-        to_return += 'btn-' + options[:type]
+    if url.blank?
+      to_return = '<button type="button" class="btn '
+      if options[:icon] then
+          body = '<i class="' + options[:icon] + '"></i>' + body
+          body = body.html_safe
+      end
+      if options[:type]
+          to_return += 'btn-' + options[:type]
+      end
+      if options[:block]
+          to_return += ' btn-block '
+      end
+      to_return += '">' + body + '</button>'
+    else
+      options[:class] ||= ''
+      options[:class] += ' btn '
+      if options[:type]
+        options[:class] += ' btn-' + options[:type] + ' '
+      end
+      if options[:block]
+        options[:block] += ' btn-block '
+      end
+      to_return = link_to(body, url, options).html_safe
     end
-    if options[:block]
-        to_return += ' btn-block '
-    end
-    if options[:icon] then
-        body = '<i class="' + options[:icon] + '"></i>' + body
-        body = body.html_safe
-    end
-    to_return += '">' + body + '</button>'
     return to_return.html_safe
   end
   def button_group(&block)
