@@ -23,7 +23,7 @@ class <%= controller_name %> < ApplicationController
   before_filter :set_page_title
 private
   def set_page_title
-    @page_title = <%= underscore_name %>
+    @page_title = '<%= underscore_name.capitalize %>'
     @page_icon = 'font-list-ul'
   end
 end
