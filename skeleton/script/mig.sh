@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2010 by Robert D. Cotey II
 #    This file is part of coteyr_pack.
 #
@@ -13,9 +14,10 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
+source ~/.bash_profile
 FIRST=`pwd`
 cd $1
-CHOICE=`kdialog --title "Migration Name" --inputbox "Migration Name"`
-script/generate migration $CHOICE
-cd $FIRST
-kate $1/db/migrate/*_${CHOICE}.rb
+CHOICE=`zenity --entry --text="Migration Name" --title="New Migration"`
+rails generate migration $CHOICE
+
+subl $1/db/migrate/*_${CHOICE}.rb

@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2010 by Robert D. Cotey II
 #    This file is part of coteyr_pack.
 #
@@ -13,12 +14,11 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
-
+source "$HOME/.rvm/scripts/rvm"
 FIRST=`pwd`
 cd $1
-CHOICE=`kdialog --title "Controller Name" --inputbox "Controller Name"`
-script/generate controller $CHOICE
+CHOICE=`zenity --entry --text="Controller Name" --title="Controller Model"`
+rails g controller $CHOICE
 cd $FIRST
-kate $1/app/controllers/${CHOICE}_controller.rb
-kate $1/test/functional/${CHOICE}_controller_test.rb
-kate $1/app/helpers/${CHOICE}_helper.rb
+subl "$1/app/controllers/${CHOICE}_controller.rb"
+subl "$1/spec/controllers/${CHOICE}_controller_spec.rb"

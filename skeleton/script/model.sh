@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2010 by Robert D. Cotey II
 #    This file is part of coteyr_pack.
 #
@@ -13,14 +14,15 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
-FIRST=`pwd`
+source "$HOME/.rvm/scripts/rvm"
+
 cd $1
-CHOICE=`kdialog --title "Model Name" --inputbox "Model Name"`
-script/generate model $CHOICE
-cd $FIRST
+CHOICE=`zenity --entry --text="Model Name" --title="New Model"`
+notify-send "$1 $CHOICE"
+rails generate model $CHOICE
 
 
-kate $1/test/unit/${CHOICE}_test.rb
-kate $1/test/fixtures/${CHOICE}s.yml
-kate $1/app/models/${CHOICE}.rb
-kate $1/db/migrate/*_create_${CHOICE}s.rb
+subl "$1/app/models/${CHOICE}.rb"
+subl $1/db/migrate/*_create_${CHOICE}s.rb
+subl $1/spec/fabricators/${CHOICE}_fabricator.rb
+subl $1/spec/models/${CHOICE}_spec.rb

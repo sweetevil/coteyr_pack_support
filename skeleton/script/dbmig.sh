@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (c) 2010 by Robert D. Cotey II
 #    This file is part of coteyr_pack.
 #
@@ -13,19 +14,21 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with coteyr_pack.  If not, see <http://www.gnu.org/licenses/>.
-FIRST=`pwd`
+source ~/.bash_profile
 cd $1
 cd db/migrate/
-OPT=""
+OPT="ALL"
 for i in *; do
 NUM=`echo "$i" | cut -d_ -f1`
 NAME=`echo "$i"`
-OPT="$OPT $NUM $NAME"
+OPT="$OPT $NAME"
 done
-CHOICE=`kdialog --title "Choose Migration" --menu "Choose Migration" "ALL" "Current Version" $OPT`
+CHOICE=`zenity --title="Choose Migration" --list --text="Choose Migration" --column="Migrations" $OPT`
 if [ $CHOICE = "ALL" ]; then
-konsole --workdir $1 --noclose -e rake db:migrate
-
+#konsole --workdir $1 --noclose -e rake db:migrate
+  gnome-terminal --window --profile=rails --command=/home/coteyr/.bin/rails-migrate.sh 'all'
 else
-konsole --workdir $1 --noclose -e rake db:migrate VERSION=$CHOICE
+#konsole --workdir $1 --noclose -e rake db:migrate VERSION=$CHOICE
+  gnome-terminal --window --profile=rails --command=/home/coteyr/.bin/rails-migrate.sh "$CHOICE"
 fi
+echo $CHOICE
