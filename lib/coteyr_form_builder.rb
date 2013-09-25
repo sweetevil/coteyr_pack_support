@@ -65,6 +65,25 @@ class CoteyrFormBuilder < ActionView::Helpers::FormBuilder
     options[:class] += ' style'
     wrapping("password", field_name, label, super, options)
   end
+  def radio_button_group(method, vaules, options={})
+    for value in values
+      if value.is_a?(Hash)
+        value_text = value[:label]
+        tag_value = value[:value]
+      else
+        value_text = value
+        tag_value = 1
+      end
+      to_return = '<label class="radio inline">'
+      to_return += value
+      to_return += @template.radio_button(@object_name, method, tag_value, options.merge(object: @object, class: 'style'))
+      to_return += "</label>"
+
+    end
+    field_name, label, options = field_settings(method, options)
+    wrapping("radio_group", field_name, label, to_return, options)
+  end
+
 
 
 

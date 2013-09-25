@@ -23,7 +23,7 @@ gem 'coteyr_pack', git: "git@git.coteyr.net:coteyr_pack.git"
 gem 'american_date'
 
 source 'http://rubygems.org'
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.13'
 
 
 group :development, :test do
