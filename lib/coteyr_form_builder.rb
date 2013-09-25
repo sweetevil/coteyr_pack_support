@@ -75,7 +75,7 @@ class CoteyrFormBuilder < ActionView::Helpers::FormBuilder
         tag_value = 1
       end
       to_return = '<label class="radio inline">'
-      to_return += value
+      to_return += value_text
       to_return += @template.radio_button(@object_name, method, tag_value, options.merge(object: @object, class: 'style'))
       to_return += "</label>"
 
