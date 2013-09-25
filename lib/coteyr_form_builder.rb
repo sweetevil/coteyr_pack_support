@@ -65,7 +65,7 @@ class CoteyrFormBuilder < ActionView::Helpers::FormBuilder
     options[:class] += ' style'
     wrapping("password", field_name, label, super, options)
   end
-  def radio_button_group(method, vaules, options={})
+  def radio_button_group(method, values, options={})
     for value in values
       if value.is_a?(Hash)
         value_text = value[:label]
