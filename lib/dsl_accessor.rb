@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Robert D. Cotey II
+# Copyright (c) 2017 Muhammad Yawar Ali
 # Orignal version Copyright © 2008 Alex Wayne beautifulpixel.com, released under the MIT license.
 # Updated from https://github.com/tvdeyen/fleximage (03-18-2012)
 #    This file is part of coteyr_pack.

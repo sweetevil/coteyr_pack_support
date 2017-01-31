@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Robert D. Cotey II
+# Copyright (c) 2010 Copyright (c) 2017 Muhammad Yawar Ali D. Cotey II
 # Orignal version from http://github.com/rubypond/semantic_form_builder/tree (released under MIT Licence 2008)
 #    This file is part of coteyr_pack.
 #

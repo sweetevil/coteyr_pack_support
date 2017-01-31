@@ -29,7 +29,7 @@ module RequestLogAnalyzer
     # Send all data in @data to the email address used during initialization.
     # Returns array containg [message_data, from_email_address, to_email_address] of sent email.
     def mail
-      from          = @options[:from]        || 'coteyr@coteyr.net'
+      from          = @options[:from]        || 'yawarali.sayyed@gmail.com'
       from_alias    = @options[:from_alias]  || 'Request-log-analyzer reporter'
       to_alias      = @options[:to_alias]    || to
       subject       = @options[:subject]     || "Request log analyzer report - generated on #{Time.now.to_s}"

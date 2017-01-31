@@ -1,4 +1,4 @@
-# Copyright (c) 2010 by Robert D. Cotey II
+# Copyright (c) 2017 by Muhammad Yawar Ali
 #    This file is part of coteyr_pack.
 #
 #    coteyr_pack is free software: you can redistribute it and/or modify
@@ -165,7 +165,7 @@ namespace :coteyr_pack do
     task :stats do
       plugin_dir = File.join(File.dirname(__FILE__), '..', '..')
       if Rails.env == "production"
-        sh("#{plugin_dir}/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --mail coteyr@coteyr.net #{::Rails.root.to_s}/log/#{Rails.env}.log")
+        sh("#{plugin_dir}/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --mail yawarali.sayyed@gmail.com #{::Rails.root.to_s}/log/#{Rails.env}.log")
       else
         sh("#{plugin_dir}/lib/log-anaylizer/bin/request-log-analyzer -f rails3 --output html --file /tmp/anaylizer.html #{::Rails.root.to_s}/log/#{Rails.env}.log")
       end

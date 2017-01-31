@@ -1,4 +1,4 @@
-<% # Copyright (c) 2010 by Robert D. Cotey II
+<% # Copyright (c) 2017 by Muhammad Yawar Ali
    #    This file is part of coteyr_pack.
    #
    #    coteyr_pack is free software: you can redistribute it and/or modify
